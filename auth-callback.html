@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Opening VisaStay…</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 60px 24px; color: #555; }
+    p { font-size: 16px; }
+  </style>
+</head>
+<body>
+  <p>Opening VisaStay…</p>
+  <p style="font-size:13px">If the app doesn't open, make sure VisaStay is installed.</p>
+  <script>
+    // Relay all query params and fragment from the Supabase redirect
+    // to the app's custom URI scheme.
+    var appScheme = 'com.digitalnomadessentials.digital_nomad_essentials://login-callback';
+    var search = window.location.search;   // e.g. ?code=XXX  or  ?access_token=XXX&...
+    var hash   = window.location.hash;     // e.g. #access_token=XXX (implicit flow)
+    window.location.replace(appScheme + search + hash);
+  </script>
+</body>
+</html>
