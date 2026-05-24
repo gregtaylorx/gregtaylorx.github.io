@@ -92,10 +92,13 @@
       if (errorDesc) { show('error-view'); return; }
 
       if (code) {
-        // PKCE flow: pass code to the app — the app has the code_verifier
-        // and will call exchangeCodeForSession() to complete the auth.
-        const deepLink = DEEP_LINK + '?code=' + encodeURIComponent(code);
-        setupAndRedirect(deepLink, 'recovery');
+        // PKCE flow: pass code AND type to the app.
+        // The app reads type=recovery BEFORE exchanging the code so it can
+        // activate PasswordRecoveryState synchronously, ahead of the router.
+        const linkType = type || 'signup';
+        const deepLink = DEEP_LINK + '?code=' + encodeURIComponent(code)
+                       + '&type=' + encodeURIComponent(linkType);
+        setupAndRedirect(deepLink, linkType);
         return;
       }
 
