@@ -42,90 +42,86 @@
     }
     .btn:hover { background: #4a3fbe; }
     .note { font-size: 13px; color: #999; margin-top: 16px; }
-    #loading { display: block; }
-    #ready-view, #error-view { display: none; }
   </style>
 </head>
 <body>
-  <div class="card">
-    <div id="loading">
-      <div class="icon">✈️</div>
-      <h1>VisaStay</h1>
-      <p>Opening app…</p>
-    </div>
-
-    <div id="ready-view">
-      <div class="icon" id="ready-icon">✅</div>
-      <h1 id="ready-title">Email Confirmed!</h1>
-      <p id="ready-msg">Tap below to open VisaStay.</p>
-      <a id="open-btn" href="#" class="btn">Open VisaStay</a>
-      <p class="note">If the app doesn't open, launch VisaStay manually.</p>
-    </div>
-
-    <div id="error-view">
-      <div class="icon">⚠️</div>
-      <h1>Invalid Link</h1>
-      <p>This link has expired or is invalid. Please request a new one from within the VisaStay app.</p>
-      <a href="com.digitalnomadessentials.digital_nomad_essentials://login-callback" class="btn">Open VisaStay</a>
-    </div>
+  <div class="card" id="card">
+    <div class="icon">✈️</div>
+    <h1>VisaStay</h1>
+    <p>Loading…</p>
   </div>
 
   <script>
     const DEEP_LINK = 'com.digitalnomadessentials.digital_nomad_essentials://login-callback';
 
-    function show(id) {
-      ['loading', 'ready-view', 'error-view']
-        .forEach(s => document.getElementById(s).style.display = s === id ? 'block' : 'none');
+    function render(icon, title, body, linkHref, linkLabel, note) {
+      document.getElementById('card').innerHTML =
+        '<div class="icon">' + icon + '</div>' +
+        '<h1>' + title + '</h1>' +
+        '<p>' + body + '</p>' +
+        (linkHref
+          ? '<a href="' + linkHref + '" class="btn">' + linkLabel + '</a>'
+          : '') +
+        (note ? '<p class="note">' + note + '</p>' : '');
     }
 
     function init() {
-      // Supabase PKCE sends ?code=XXX  (supabase-flutter 2.x default)
-      // Supabase implicit sends #access_token=XXX&type=...
-      const query  = new URLSearchParams(window.location.search);
-      const hash   = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+      var query = new URLSearchParams(window.location.search);
+      var hash  = new URLSearchParams(window.location.hash.replace(/^#/, ''));
 
-      const code         = query.get('code');
-      const accessToken  = hash.get('access_token');
-      const type         = hash.get('type') || query.get('type');
-      const errorDesc    = hash.get('error_description') || query.get('error_description');
+      var code        = query.get('code');
+      var accessToken = hash.get('access_token');
+      var type        = query.get('type') || hash.get('type') || '';
+      var errorDesc   = query.get('error_description') || hash.get('error_description');
 
-      if (errorDesc) { show('error-view'); return; }
+      if (errorDesc) {
+        render('⚠️', 'Link Expired',
+          'This link has expired or is invalid. Request a new one from within the VisaStay app.',
+          DEEP_LINK, 'Open VisaStay', null);
+        return;
+      }
 
+      // PKCE flow — code must be exchanged inside the app (app holds the verifier).
+      // Pass code + type to the app via deep link. User must tap — Android Chrome
+      // blocks auto-redirect to custom URL schemes without a user gesture.
       if (code) {
-        // PKCE flow: pass code AND type to the app.
-        // The app reads type=recovery BEFORE exchanging the code so it can
-        // activate PasswordRecoveryState synchronously, ahead of the router.
-        const linkType = type || 'signup';
-        const deepLink = DEEP_LINK + '?code=' + encodeURIComponent(code)
-                       + '&type=' + encodeURIComponent(linkType);
-        setupAndRedirect(deepLink, linkType);
+        var deepLink = DEEP_LINK + '?code=' + encodeURIComponent(code)
+                     + '&type=' + encodeURIComponent(type || 'signup');
+
+        var isRecovery = type === 'recovery';
+        render(
+          isRecovery ? '🔑' : '✅',
+          isRecovery ? 'Reset Your Password' : 'Email Confirmed!',
+          isRecovery
+            ? 'Tap below to open VisaStay and set your new password.'
+            : 'Your email is confirmed. Tap below to open VisaStay.',
+          deepLink,
+          'Open VisaStay',
+          'Make sure VisaStay is installed on this device.'
+        );
         return;
       }
 
+      // Implicit flow — forward hash fragment to the app.
       if (accessToken) {
-        // Implicit flow (older clients): forward everything to the app via hash.
-        const deepLink = DEEP_LINK + '#' + window.location.hash.replace(/^#/, '');
-        setupAndRedirect(deepLink, type);
+        var deepLink2 = DEEP_LINK + '#' + window.location.hash.replace(/^#/, '');
+        var isRec = type === 'recovery';
+        render(
+          isRec ? '🔑' : '✅',
+          isRec ? 'Reset Your Password' : 'Email Confirmed!',
+          isRec
+            ? 'Tap below to open VisaStay and set your new password.'
+            : 'Your email is confirmed. Tap below to open VisaStay.',
+          deepLink2,
+          'Open VisaStay',
+          'Make sure VisaStay is installed on this device.'
+        );
         return;
       }
 
-      // Nothing usable in the URL.
-      show('error-view');
-    }
-
-    function setupAndRedirect(deepLink, type) {
-      const isRecovery = type === 'recovery';
-      document.getElementById('ready-icon').textContent = isRecovery ? '🔑' : '✅';
-      document.getElementById('ready-title').textContent =
-          isRecovery ? 'Reset Your Password' : 'Email Confirmed!';
-      document.getElementById('ready-msg').textContent = isRecovery
-          ? 'Tap below to open VisaStay and set your new password.'
-          : 'Your email is confirmed. Tap below to sign in.';
-      document.getElementById('open-btn').href = deepLink;
-      show('ready-view');
-
-      // Auto-open the app after a short delay.
-      setTimeout(() => { window.location.href = deepLink; }, 600);
+      render('⚠️', 'Invalid Link',
+        'This link has expired or is invalid. Request a new one from within the VisaStay app.',
+        DEEP_LINK, 'Open VisaStay', null);
     }
 
     init();
