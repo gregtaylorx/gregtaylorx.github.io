@@ -24,7 +24,7 @@
       box-shadow: 0 2px 16px rgba(0,0,0,0.08);
       text-align: center;
     }
-    .logo { font-size: 48px; margin-bottom: 16px; }
+    .icon { font-size: 56px; margin-bottom: 16px; }
     h1 { font-size: 22px; font-weight: 700; color: #1a1a2e; margin-bottom: 8px; }
     p  { font-size: 15px; color: #666; line-height: 1.5; margin-bottom: 24px; }
     .btn {
@@ -41,197 +41,88 @@
       width: 100%;
     }
     .btn:hover { background: #4a3fbe; }
-    .btn-outline {
-      background: transparent;
-      color: #5b4fcf;
-      border: 2px solid #5b4fcf;
-      margin-top: 12px;
-    }
-    .btn-outline:hover { background: #f0eeff; }
-    input[type=password] {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1.5px solid #ddd;
-      border-radius: 10px;
-      font-size: 16px;
-      margin-bottom: 12px;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    input[type=password]:focus { border-color: #5b4fcf; }
-    .error { color: #d32f2f; font-size: 14px; margin-bottom: 12px; }
-    .success-icon { font-size: 56px; margin-bottom: 16px; }
+    .note { font-size: 13px; color: #999; margin-top: 16px; }
     #loading { display: block; }
-    #confirm-view, #reset-view, #done-view, #error-view { display: none; }
+    #ready-view, #error-view { display: none; }
   </style>
 </head>
 <body>
   <div class="card">
-    <!-- Loading -->
     <div id="loading">
-      <div class="logo">✈️</div>
+      <div class="icon">✈️</div>
       <h1>VisaStay</h1>
-      <p>Just a moment…</p>
+      <p>Opening app…</p>
     </div>
 
-    <!-- Email confirmed -->
-    <div id="confirm-view">
-      <div class="success-icon">✅</div>
-      <h1>Email Confirmed!</h1>
-      <p>Your email address has been verified. You can now sign in to VisaStay.</p>
-      <a id="open-app-confirm" href="#" class="btn">Open VisaStay</a>
-      <p style="margin-top:16px;font-size:13px;color:#999;">
-        If the app doesn't open, launch VisaStay manually and sign in.
-      </p>
+    <div id="ready-view">
+      <div class="icon" id="ready-icon">✅</div>
+      <h1 id="ready-title">Email Confirmed!</h1>
+      <p id="ready-msg">Tap below to open VisaStay.</p>
+      <a id="open-btn" href="#" class="btn">Open VisaStay</a>
+      <p class="note">If the app doesn't open, launch VisaStay manually.</p>
     </div>
 
-    <!-- Password reset form -->
-    <div id="reset-view">
-      <div class="logo">🔑</div>
-      <h1>Set New Password</h1>
-      <p>Enter a new password for your VisaStay account.</p>
-      <div id="reset-error" class="error" style="display:none"></div>
-      <input type="password" id="pw1" placeholder="New password (min. 8 characters)" />
-      <input type="password" id="pw2" placeholder="Confirm new password" />
-      <button class="btn" onclick="submitReset()">Update Password</button>
-    </div>
-
-    <!-- Done (after reset) -->
-    <div id="done-view">
-      <div class="success-icon">🎉</div>
-      <h1>Password Updated!</h1>
-      <p>Your password has been changed. Open VisaStay to sign in with your new password.</p>
-      <a id="open-app-done" href="#" class="btn">Open VisaStay</a>
-    </div>
-
-    <!-- Error -->
     <div id="error-view">
-      <div class="success-icon">⚠️</div>
-      <h1>Link Expired</h1>
+      <div class="icon">⚠️</div>
+      <h1>Invalid Link</h1>
       <p>This link has expired or is invalid. Please request a new one from within the VisaStay app.</p>
       <a href="com.digitalnomadessentials.digital_nomad_essentials://login-callback" class="btn">Open VisaStay</a>
     </div>
   </div>
 
   <script>
-    const SUPABASE_URL  = 'https://aubnhaktbxapnhtwmcyj.supabase.co';
-    const SUPABASE_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF1Ym5oYWt0YnhhcG5odHdtY3lqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4Njg4NDksImV4cCI6MjA5MzQ0NDg0OX0.Kg5v1Fm712sFxiSsNMPMnXrxGAFcCBwL2K8IKIwiSWU';
-    const DEEP_LINK     = 'com.digitalnomadessentials.digital_nomad_essentials://login-callback';
-
-    let accessToken = null;
+    const DEEP_LINK = 'com.digitalnomadessentials.digital_nomad_essentials://login-callback';
 
     function show(id) {
-      ['loading','confirm-view','reset-view','done-view','error-view']
+      ['loading', 'ready-view', 'error-view']
         .forEach(s => document.getElementById(s).style.display = s === id ? 'block' : 'none');
     }
 
-    function parseParams() {
-      // Supabase can put tokens in either hash or query string.
-      const hash   = window.location.hash.replace(/^#/, '');
-      const query  = window.location.search.replace(/^\?/, '');
-      const params = new URLSearchParams(hash || query);
-      // Also try query even when hash is present (PKCE code flow).
-      const qp     = new URLSearchParams(query);
-      return {
-        type:         params.get('type') || qp.get('type'),
-        accessToken:  params.get('access_token') || qp.get('access_token'),
-        refreshToken: params.get('refresh_token') || qp.get('refresh_token'),
-        code:         qp.get('code'),
-        errorDesc:    params.get('error_description') || qp.get('error_description'),
-      };
-    }
+    function init() {
+      // Supabase PKCE sends ?code=XXX  (supabase-flutter 2.x default)
+      // Supabase implicit sends #access_token=XXX&type=...
+      const query  = new URLSearchParams(window.location.search);
+      const hash   = new URLSearchParams(window.location.hash.replace(/^#/, ''));
 
-    async function init() {
-      const p = parseParams();
+      const code         = query.get('code');
+      const accessToken  = hash.get('access_token');
+      const type         = hash.get('type') || query.get('type');
+      const errorDesc    = hash.get('error_description') || query.get('error_description');
 
-      if (p.errorDesc) { show('error-view'); return; }
+      if (errorDesc) { show('error-view'); return; }
 
-      // PKCE code exchange (email confirmation in newer Supabase versions).
-      if (p.code) {
-        try {
-          const res = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=pkce`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY },
-            body: JSON.stringify({ auth_code: p.code }),
-          });
-          const data = await res.json();
-          if (data.access_token) {
-            accessToken = data.access_token;
-            // Treat as confirmation if no type or type=signup.
-            show('confirm-view');
-            setDeepLink(data.access_token, data.refresh_token, 'signup');
-          } else {
-            show('error-view');
-          }
-        } catch { show('error-view'); }
+      if (code) {
+        // PKCE flow: pass code to the app — the app has the code_verifier
+        // and will call exchangeCodeForSession() to complete the auth.
+        const deepLink = DEEP_LINK + '?code=' + encodeURIComponent(code);
+        setupAndRedirect(deepLink, 'recovery');
         return;
       }
 
-      if (!p.type) { show('error-view'); return; }
-
-      if (p.type === 'signup' || p.type === 'email_change') {
-        show('confirm-view');
-        setDeepLink(p.accessToken, p.refreshToken, p.type);
+      if (accessToken) {
+        // Implicit flow (older clients): forward everything to the app via hash.
+        const deepLink = DEEP_LINK + '#' + window.location.hash.replace(/^#/, '');
+        setupAndRedirect(deepLink, type);
         return;
       }
 
-      if (p.type === 'recovery') {
-        if (!p.accessToken) { show('error-view'); return; }
-        accessToken = p.accessToken;
-        show('reset-view');
-        return;
-      }
-
+      // Nothing usable in the URL.
       show('error-view');
     }
 
-    function setDeepLink(at, rt, type) {
-      const url = `${DEEP_LINK}#access_token=${at || ''}&refresh_token=${rt || ''}&type=${type}`;
-      document.getElementById('open-app-confirm').href = url;
-      // Auto-attempt to open the app after a brief delay.
-      setTimeout(() => { window.location.href = url; }, 800);
-    }
+    function setupAndRedirect(deepLink, type) {
+      const isRecovery = type === 'recovery';
+      document.getElementById('ready-icon').textContent = isRecovery ? '🔑' : '✅';
+      document.getElementById('ready-title').textContent =
+          isRecovery ? 'Reset Your Password' : 'Email Confirmed!';
+      document.getElementById('ready-msg').textContent = isRecovery
+          ? 'Tap below to open VisaStay and set your new password.'
+          : 'Your email is confirmed. Tap below to sign in.';
+      document.getElementById('open-btn').href = deepLink;
+      show('ready-view');
 
-    async function submitReset() {
-      const pw1 = document.getElementById('pw1').value;
-      const pw2 = document.getElementById('pw2').value;
-      const errEl = document.getElementById('reset-error');
-      errEl.style.display = 'none';
-
-      if (pw1.length < 8) {
-        errEl.textContent = 'Password must be at least 8 characters.';
-        errEl.style.display = 'block';
-        return;
-      }
-      if (pw1 !== pw2) {
-        errEl.textContent = 'Passwords do not match.';
-        errEl.style.display = 'block';
-        return;
-      }
-
-      try {
-        const res = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            'apikey': SUPABASE_KEY,
-            'Authorization': `Bearer ${accessToken}`,
-          },
-          body: JSON.stringify({ password: pw1 }),
-        });
-        if (res.ok) {
-          show('done-view');
-          document.getElementById('open-app-done').href = DEEP_LINK;
-          setTimeout(() => { window.location.href = DEEP_LINK; }, 1200);
-        } else {
-          const d = await res.json();
-          errEl.textContent = d.message || 'Failed to update password. Try again.';
-          errEl.style.display = 'block';
-        }
-      } catch {
-        errEl.textContent = 'Network error. Please try again.';
-        errEl.style.display = 'block';
-      }
+      // Auto-open the app after a short delay.
+      setTimeout(() => { window.location.href = deepLink; }, 600);
     }
 
     init();
