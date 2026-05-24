@@ -52,17 +52,48 @@
   </div>
 
   <script>
-    const DEEP_LINK = 'com.digitalnomadessentials.digital_nomad_essentials://login-callback';
+    // The custom URL scheme contains underscores, which are not valid in RFC 3986
+    // URI schemes. Chrome therefore cannot parse it as a scheme and treats the
+    // entire string as a relative path — producing a 404.
+    //
+    // Fix: use Android's Intent URL format (intent://…#Intent;scheme=…;end).
+    // Chrome recognises "intent://" as a built-in scheme and passes the
+    // reconstructed URI directly to Android's intent system, bypassing the
+    // browser's own URL parser.
 
-    function render(icon, title, body, linkHref, linkLabel, note) {
+    var SCHEME  = 'com.digitalnomadessentials.digital_nomad_essentials';
+    var PACKAGE = 'com.digitalnomadessentials.digital_nomad_essentials';
+
+    function buildDeepLink(path, queryStr) {
+      var isAndroid = /Android/i.test(navigator.userAgent);
+      if (isAndroid) {
+        // intent://HOST/PATH?QUERY#Intent;scheme=SCHEME;package=PACKAGE;end
+        // Android reconstructs: SCHEME://HOST/PATH?QUERY and fires the intent.
+        return 'intent://' + path + '?' + queryStr
+             + '#Intent'
+             + ';scheme=' + SCHEME
+             + ';package=' + PACKAGE
+             + ';end';
+      }
+      // iOS / desktop: try the custom scheme directly.
+      // iOS ignores RFC scheme restrictions and routes via Info.plist.
+      return SCHEME + '://' + path + '?' + queryStr;
+    }
+
+    function render(icon, title, body, href, btnLabel, note) {
       document.getElementById('card').innerHTML =
         '<div class="icon">' + icon + '</div>' +
         '<h1>' + title + '</h1>' +
         '<p>' + body + '</p>' +
-        (linkHref
-          ? '<a href="' + linkHref + '" class="btn">' + linkLabel + '</a>'
-          : '') +
+        (href ? '<a href="' + href + '" class="btn">' + btnLabel + '</a>' : '') +
         (note ? '<p class="note">' + note + '</p>' : '');
+    }
+
+    function showError() {
+      var fallback = buildDeepLink('login-callback', 'type=error');
+      render('⚠️', 'Link Expired',
+        'This link has expired or is invalid. Request a new one from within the VisaStay app.',
+        fallback, 'Open VisaStay', null);
     }
 
     function init() {
@@ -74,37 +105,13 @@
       var type        = query.get('type') || hash.get('type') || '';
       var errorDesc   = query.get('error_description') || hash.get('error_description');
 
-      if (errorDesc) {
-        render('⚠️', 'Link Expired',
-          'This link has expired or is invalid. Request a new one from within the VisaStay app.',
-          DEEP_LINK, 'Open VisaStay', null);
-        return;
-      }
+      if (errorDesc) { showError(); return; }
 
-      // PKCE flow — code must be exchanged inside the app (app holds the verifier).
-      // Pass code + type to the app via deep link. User must tap — Android Chrome
-      // blocks auto-redirect to custom URL schemes without a user gesture.
       if (code) {
-        var deepLink = DEEP_LINK + '?code=' + encodeURIComponent(code)
-                     + '&type=' + encodeURIComponent(type || 'signup');
-
-        var isRecovery = type === 'recovery';
-        render(
-          isRecovery ? '🔑' : '✅',
-          isRecovery ? 'Reset Your Password' : 'Email Confirmed!',
-          isRecovery
-            ? 'Tap below to open VisaStay and set your new password.'
-            : 'Your email is confirmed. Tap below to open VisaStay.',
-          deepLink,
-          'Open VisaStay',
-          'Make sure VisaStay is installed on this device.'
-        );
-        return;
-      }
-
-      // Implicit flow — forward hash fragment to the app.
-      if (accessToken) {
-        var deepLink2 = DEEP_LINK + '#' + window.location.hash.replace(/^#/, '');
+        // PKCE flow — code must be exchanged by the app (holds the verifier).
+        var qs = 'code=' + encodeURIComponent(code)
+               + '&type=' + encodeURIComponent(type || 'signup');
+        var link = buildDeepLink('login-callback', qs);
         var isRec = type === 'recovery';
         render(
           isRec ? '🔑' : '✅',
@@ -112,16 +119,33 @@
           isRec
             ? 'Tap below to open VisaStay and set your new password.'
             : 'Your email is confirmed. Tap below to open VisaStay.',
-          deepLink2,
-          'Open VisaStay',
-          'Make sure VisaStay is installed on this device.'
+          link, 'Open VisaStay',
+          'VisaStay must be installed on this device.'
         );
         return;
       }
 
-      render('⚠️', 'Invalid Link',
-        'This link has expired or is invalid. Request a new one from within the VisaStay app.',
-        DEEP_LINK, 'Open VisaStay', null);
+      if (accessToken) {
+        // Implicit flow — forward all hash params as query params so the
+        // Intent URL fragment slot stays free for ;scheme=…;end.
+        var qs2 = 'access_token=' + encodeURIComponent(hash.get('access_token') || '')
+                + '&refresh_token=' + encodeURIComponent(hash.get('refresh_token') || '')
+                + '&type=' + encodeURIComponent(type);
+        var link2 = buildDeepLink('login-callback', qs2);
+        var isRec2 = type === 'recovery';
+        render(
+          isRec2 ? '🔑' : '✅',
+          isRec2 ? 'Reset Your Password' : 'Email Confirmed!',
+          isRec2
+            ? 'Tap below to open VisaStay and set your new password.'
+            : 'Your email is confirmed. Tap below to open VisaStay.',
+          link2, 'Open VisaStay',
+          'VisaStay must be installed on this device.'
+        );
+        return;
+      }
+
+      showError();
     }
 
     init();
