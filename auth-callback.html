@@ -1,154 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VisaStay</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VisaStay — Confirming your email</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #f5f5f5;
-      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 24px;
-    }
-    .card {
-      background: #fff;
-      border-radius: 16px;
-      padding: 40px 32px;
-      max-width: 420px;
-      width: 100%;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      min-height: 100vh;
+      margin: 0;
+      background: #f5f5f5;
+      color: #333;
       text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
     }
-    .icon { font-size: 56px; margin-bottom: 16px; }
-    h1 { font-size: 22px; font-weight: 700; color: #1a1a2e; margin-bottom: 8px; }
-    p  { font-size: 15px; color: #666; line-height: 1.5; margin-bottom: 24px; }
+    h1 { font-size: 1.5rem; margin-bottom: 8px; }
+    p { color: #666; font-size: 0.95rem; max-width: 320px; }
+    .spinner {
+      width: 40px; height: 40px;
+      border: 3px solid #ddd;
+      border-top-color: #007AFF;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 24px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .fallback { display: none; margin-top: 20px; }
     .btn {
       display: inline-block;
-      background: #5b4fcf;
-      color: #fff;
-      border: none;
+      background: #007AFF;
+      color: white;
+      padding: 12px 28px;
       border-radius: 10px;
-      padding: 14px 28px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
       text-decoration: none;
-      width: 100%;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-top: 12px;
     }
-    .btn:hover { background: #4a3fbe; }
-    .note { font-size: 13px; color: #999; margin-top: 16px; }
   </style>
 </head>
 <body>
-  <div class="card" id="card">
-    <div class="icon">✈️</div>
-    <h1>VisaStay</h1>
-    <p>Loading…</p>
+  <div class="spinner"></div>
+  <h1>Opening VisaStay…</h1>
+  <p>Redirecting you back to the app to complete sign up.</p>
+
+  <div class="fallback" id="fallback">
+    <p>If the app didn't open automatically, tap the button below.</p>
+    <a id="deeplink" href="#" class="btn">Open VisaStay</a>
+    <p style="margin-top:16px; font-size:0.85rem;">
+      If you don't have the app installed, you can close this page and sign in manually.
+    </p>
   </div>
 
   <script>
-    // The custom URL scheme contains underscores, which are not valid in RFC 3986
-    // URI schemes. Chrome therefore cannot parse it as a scheme and treats the
-    // entire string as a relative path — producing a 404.
-    //
-    // Fix: use Android's Intent URL format (intent://…#Intent;scheme=…;end).
-    // Chrome recognises "intent://" as a built-in scheme and passes the
-    // reconstructed URI directly to Android's intent system, bypassing the
-    // browser's own URL parser.
-
-    var SCHEME  = 'com.digitalnomadessentials.digital_nomad_essentials';
-    var PACKAGE = 'com.digitalnomadessentials.digital_nomad_essentials';
-
-    function buildDeepLink(path, queryStr) {
-      var isAndroid = /Android/i.test(navigator.userAgent);
-      if (isAndroid) {
-        // intent://HOST/PATH?QUERY#Intent;scheme=SCHEME;package=PACKAGE;end
-        // Android reconstructs: SCHEME://HOST/PATH?QUERY and fires the intent.
-        return 'intent://' + path + '?' + queryStr
-             + '#Intent'
-             + ';scheme=' + SCHEME
-             + ';package=' + PACKAGE
-             + ';end';
-      }
-      // iOS / desktop: try the custom scheme directly.
-      // iOS ignores RFC scheme restrictions and routes via Info.plist.
-      return SCHEME + '://' + path + '?' + queryStr;
-    }
-
-    function render(icon, title, body, href, btnLabel, note) {
-      document.getElementById('card').innerHTML =
-        '<div class="icon">' + icon + '</div>' +
-        '<h1>' + title + '</h1>' +
-        '<p>' + body + '</p>' +
-        (href ? '<a href="' + href + '" class="btn">' + btnLabel + '</a>' : '') +
-        (note ? '<p class="note">' + note + '</p>' : '');
-    }
-
-    function showError() {
-      var fallback = buildDeepLink('login-callback', 'type=error');
-      render('⚠️', 'Link Expired',
-        'This link has expired or is invalid. Request a new one from within the VisaStay app.',
-        fallback, 'Open VisaStay', null);
-    }
-
-    function init() {
-      var query = new URLSearchParams(window.location.search);
-      var hash  = new URLSearchParams(window.location.hash.replace(/^#/, ''));
-
-      var code        = query.get('code');
-      var accessToken = hash.get('access_token');
-      var type        = query.get('type') || hash.get('type') || '';
-      var errorDesc   = query.get('error_description') || hash.get('error_description');
-
-      if (errorDesc) { showError(); return; }
-
-      if (code) {
-        // PKCE flow — code must be exchanged by the app (holds the verifier).
-        var qs = 'code=' + encodeURIComponent(code)
-               + '&type=' + encodeURIComponent(type || 'signup');
-        var link = buildDeepLink('login-callback', qs);
-        var isRec = type === 'recovery';
-        render(
-          isRec ? '🔑' : '✅',
-          isRec ? 'Reset Your Password' : 'Email Confirmed!',
-          isRec
-            ? 'Tap below to open VisaStay and set your new password.'
-            : 'Your email is confirmed. Tap below to open VisaStay.',
-          link, 'Open VisaStay',
-          'VisaStay must be installed on this device.'
-        );
-        return;
-      }
-
-      if (accessToken) {
-        // Implicit flow — forward all hash params as query params so the
-        // Intent URL fragment slot stays free for ;scheme=…;end.
-        var qs2 = 'access_token=' + encodeURIComponent(hash.get('access_token') || '')
-                + '&refresh_token=' + encodeURIComponent(hash.get('refresh_token') || '')
-                + '&type=' + encodeURIComponent(type);
-        var link2 = buildDeepLink('login-callback', qs2);
-        var isRec2 = type === 'recovery';
-        render(
-          isRec2 ? '🔑' : '✅',
-          isRec2 ? 'Reset Your Password' : 'Email Confirmed!',
-          isRec2
-            ? 'Tap below to open VisaStay and set your new password.'
-            : 'Your email is confirmed. Tap below to open VisaStay.',
-          link2, 'Open VisaStay',
-          'VisaStay must be installed on this device.'
-        );
-        return;
-      }
-
-      showError();
-    }
-
-    init();
+    (function () {
+      var search = window.location.search;
+      var hash   = window.location.hash;
+      var deepLink = 'com.digitalnomadessentials.visastay://login-callback' + search + hash;
+      document.getElementById('deeplink').href = deepLink;
+      window.location.href = deepLink;
+      setTimeout(function () {
+        document.getElementById('fallback').style.display = 'block';
+      }, 2000);
+    })();
   </script>
 </body>
 </html>
