@@ -1,0 +1,235 @@
+{
+  "version": 1,
+  "sections": [
+    {
+      "title": "General",
+      "items": [
+        {
+          "q": "What does VisaStay do?",
+          "a": "VisaStay tracks how many days you can legally stay in a country based on your passport and the destination's visa rules. It counts down your remaining days, warns you before you overstay, and helps you plan future trips."
+        },
+        {
+          "q": "Which devices does VisaStay support?",
+          "a": "VisaStay runs on Android phones and tablets, and iPhone and iPad (iOS 14+). The experience is the same across all devices. Home screen widgets are currently Android-only."
+        },
+        {
+          "q": "Which countries are supported?",
+          "a": "VisaStay currently covers 30 passports and 157 destination countries across Europe, Asia, the Middle East, Africa, and the Americas. More countries are added as we get requests. If your passport or destination isn't listed, use the Report a Visa Change button to request it or email us."
+        },
+        {
+          "q": "How accurate is the visa information?",
+          "a": "Visa rules are researched from official government and embassy sources and updated regularly. However, rules can change without notice so it's always best to verify with the official embassy or consulate before travelling. VisaStay is a planning aid, not a legal guarantee."
+        },
+        {
+          "q": "Is VisaStay only for digital nomads?",
+          "a": "No — anyone who travels internationally can use it. It's especially useful for frequent travelers, long-stay tourists, expats, and remote workers."
+        }
+      ]
+    },
+    {
+      "title": "Account & Login",
+      "items": [
+        {
+          "q": "How do I create an account?",
+          "a": "Tap Register on the login screen and enter your email and password. You'll receive a confirmation email — tap the link in it to verify your address, then sign in."
+        },
+        {
+          "q": "I didn't receive a confirmation email. What do I do?",
+          "a": "Check your spam or junk folder first. If it's not there, tap Resend Email on the verification screen. Make sure the email address you entered is correct."
+        },
+        {
+          "q": "I tapped the confirmation link but the app didn't open (iPhone / iPad).",
+          "a": "On iOS, tapping the email link opens a page in Safari that redirects you back to VisaStay. If the app doesn't launch automatically, tap the Open VisaStay button on that page. If you've already opened the app, just sign in on the login screen — your email is already confirmed."
+        },
+        {
+          "q": "I forgot my password. How do I reset it?",
+          "a": "Tap Forgot password? on the login screen and enter your email address. You'll receive a reset link within a few minutes."
+        },
+        {
+          "q": "What is biometric login?",
+          "a": "Biometric login lets you unlock VisaStay with your fingerprint or face ID instead of typing your password every time. Enable it in Profile → Biometric App Unlock. This method of unlock works even when you're offline."
+        },
+        {
+          "q": "How do I delete my account?",
+          "a": "Go to Profile → Delete Account. We'll delete your account and all associated data within 7 days."
+        }
+      ]
+    },
+    {
+      "title": "Trips",
+      "items": [
+        {
+          "q": "How do I add a trip?",
+          "a": "Tap the + Add Trip button on the home screen. Enter the country name in English or country code (e.g. TH for Thailand), your start and end dates (or let us calculate the max for you), and optionally a title, city and notes. VisaStay will look up the visa rule for your passport automatically."
+        },
+        {
+          "q": "What is the country code?",
+          "a": "It's the two-letter ISO code for the country — for example, FR for France, JP for Japan, US for the United States. VisaStay validates the code and shows you the country name so you can confirm it's correct. Use GB (not UK) for the United Kingdom."
+        },
+        {
+          "q": "How many trips can I add on the free plan?",
+          "a": "Free accounts can have up to 5 active or upcoming trips at a time. Past trips don't count toward that limit. Upgrade to Pro for unlimited trips."
+        },
+        {
+          "q": "Can I edit or delete a trip?",
+          "a": "Yes. Tap any trip on the home screen to open it, then use the Edit or Delete options. Deleting a trip is permanent."
+        },
+        {
+          "q": "What does the visa countdown show?",
+          "a": "It shows the lesser of two values: the days remaining under your visa rule, and the days until your manually entered exit date. This is intentional — you may plan to leave before your visa would expire."
+        },
+        {
+          "q": "What visa type does VisaStay use for calculations?",
+          "a": "VisaStay defaults to the standard tourist or visitor visa for each country — the most common entry type for travellers. If you're entering on a different visa (work permit, student visa, long-stay visa, etc.) the allowed stay may be different. In that case, set your exit date manually to match your actual permitted stay rather than relying on the calculated default."
+        },
+        {
+          "q": "What do the status badges mean?",
+          "a": "Good — plenty of time remaining.\nPlan ahead — fewer than 30 days remaining.\nExtendable — your visa can be extended; contact local immigration.\nAct now — fewer than 7 days remaining.\nExpired — your permitted stay has ended."
+        }
+      ]
+    },
+    {
+      "title": "Visa Planner",
+      "items": [
+        {
+          "q": "What is the Visa Planner?",
+          "a": "The Visa Planner lets you map out future trips in sequence — adding planned legs one after another — and see the visa implications of each before you book anything."
+        },
+        {
+          "q": "How many planned trips can I add on the free plan?",
+          "a": "Free accounts can plan up to 3 legs. Pro accounts can plan up to 10 legs."
+        },
+        {
+          "q": "Can I reorder planned trips?",
+          "a": "Yes, but drag-to-reorder is a Pro feature. Upgrade to Pro to reorganize your planned itinerary. This changes all downstream dates so recheck dates after moving planned trips."
+        }
+      ]
+    },
+    {
+      "title": "Visa & Entry Types",
+      "items": [
+        {
+          "q": "What is the difference between the entry types VisaStay shows?",
+          "a": "VisaStay uses five entry categories:\n\nVisa exempt — no visa or pre-registration needed. Show up with your passport.\n\nVisa on arrival — no advance visa needed, but you pay and receive a stamp or sticker at the border. Have cash in the local currency or USD ready.\n\nETA (Electronic Travel Authorisation) — no visa required, but you must register online before you travel. The process is quick (usually minutes), low cost or free, and is valid for multiple trips over 1–2 years. Examples: Australia ETA, Canada eTA, UK ETA, Israel ETA, New Zealand NZeTA. VisaStay will remind you when an ETA is required for a destination.\n\neVisa — a full visa applied for and issued online before travel. Usually costs more than an ETA and may take days to process. Do not book flights until it is approved.\n\nVisa required — must apply at an embassy or consulate in person before travel. Allow several weeks."
+        },
+        {
+          "q": "What is an ETA and why is it different from a visa?",
+          "a": "An Electronic Travel Authorisation (ETA) is a pre-travel permission linked electronically to your passport. Unlike a visa, there is no stamp, sticker, or label — the authorisation exists in a database. ETAs are typically approved automatically within minutes, cost little or nothing, and are valid for multiple trips over 1–2 years.\n\nCountries using ETAs include Australia (ETA / eVisitor), Canada (eTA), the United Kingdom (UK ETA), Israel (ETA), and New Zealand (NZeTA), among others.\n\nVisaStay shows ETA as a separate entry type so you know to register before you fly — skipping it can result in being denied boarding, even though no visa is technically required."
+        },
+        {
+          "q": "Where do I apply for an ETA?",
+          "a": "Always apply through the official government website for the destination country. Third-party services charge significant fees for the same process. Tap the flag emoji on any trip card to open the official visa information page for that destination."
+        }
+      ]
+    },
+    {
+      "title": "Schengen Calculator",
+      "items": [
+        {
+          "q": "What is the Schengen 90/180 rule?",
+          "a": "The Schengen Area (most of the EU plus several associated countries) limits most non-EU passport holders to 90 days within any rolling 180-day period across all Schengen countries combined — not per country. VisaStay's Schengen calculator tracks your running total and warns you when you're approaching or over the limit."
+        },
+        {
+          "q": "Which passports does the Schengen rule apply to?",
+          "a": "It applies to most non-EU/EEA passports. EU, EEA, and Swiss passport holders are not subject to the 90/180 limit. VisaStay automatically applies the rule based on your passport country."
+        }
+      ]
+    },
+    {
+      "title": "Notifications",
+      "items": [
+        {
+          "q": "What notifications does VisaStay send?",
+          "a": "VisaStay can notify you a set number of days before your visa expires — for example, 14 days, 7 days, and 1 day before. You can customize these rules in the Notifications section."
+        },
+        {
+          "q": "How many notification rules can I set?",
+          "a": "Free accounts get 1 system notification rule. Pro accounts can set up to 12 rules with custom timing and email alerts."
+        },
+        {
+          "q": "Can VisaStay email me when my visa is expiring?",
+          "a": "Yes — email notifications are a Pro feature. You can also set up automatic emails to notify someone else (a family member, accountant, or employer) when your stay is ending."
+        }
+      ]
+    },
+    {
+      "title": "Subscription & Billing",
+      "items": [
+        {
+          "q": "What is VisaStay Pro?",
+          "a": "Pro unlocks unlimited trips, up to 10 planned legs, automatic Schengen breach alerts, email notifications, full trip history, tax residency breakdown, CSV export, and more. See the full comparison on the upgrade screen."
+        },
+        {
+          "q": "How much does Pro cost?",
+          "a": "Monthly: $5.99/month\nYearly: $39.99/year (save 44%)\nFounders Pass: $89.99 one-time, lifetime access including updates."
+        },
+        {
+          "q": "What is the Founders Pass?",
+          "a": "A one-time purchase that gives you lifetime Pro access — no recurring subscription ever. Available for a limited time."
+        },
+        {
+          "q": "Is there a free trial?",
+          "a": "Yes. New users can start a 14-day Pro trial with no credit card required. Tap Start Free Trial on the upgrade screen, or it will be offered automatically the first time you try a Pro feature. After the trial, subscribe or stay on the free plan."
+        },
+        {
+          "q": "How do I restore a purchase after reinstalling?",
+          "a": "Go to Profile → Restore Purchases. This reconnects your Google Play or App Store purchase to your account."
+        },
+        {
+          "q": "How do I cancel my subscription?",
+          "a": "Subscriptions are managed through Google Play (Android) or the App Store (iOS). Open the relevant store app, go to Subscriptions, and cancel from there. VisaStay cannot cancel subscriptions directly."
+        }
+      ]
+    },
+    {
+      "title": "Privacy & Data",
+      "items": [
+        {
+          "q": "What data does VisaStay store?",
+          "a": "VisaStay stores your email address, passport country, and the trips you add. No location data is collected. No data is sold to third parties."
+        },
+        {
+          "q": "Where is my data stored?",
+          "a": "Data is stored securely on Supabase (PostgreSQL), hosted in the United States on AWS infrastructure."
+        },
+        {
+          "q": "Does VisaStay work offline?",
+          "a": "Yes, for viewing. Your trips, visa rules, and profile are cached locally so you can view everything without a connection. Adding, editing, or deleting trips requires an internet connection — you'll see an error if you try while offline. To sign in offline, enable biometric login in Profile."
+        },
+        {
+          "q": "How do I request deletion of my data?",
+          "a": "Go to Profile → Delete Account, or email privacy@headfirstservices.com directly. We'll delete your account and all associated data within 7 days."
+        }
+      ]
+    },
+    {
+      "title": "Troubleshooting",
+      "items": [
+        {
+          "q": "Notifications aren't working on my iPhone or iPad.",
+          "a": "Go to iOS Settings → VisaStay → Notifications and make sure Allow Notifications is enabled. iOS does not require any additional alarm or battery permissions — standard notification access is all that's needed. Note that email notifications are still sent from our server regardless of device notification settings."
+        },
+        {
+          "q": "Notifications aren't working on my Android device.",
+          "a": "Open the Notifications screen in VisaStay. If you see a warning banner, tap Fix to grant the required permission. On Android 12+, VisaStay needs exact alarm permission to deliver alerts at the correct time. On some Android phones, battery optimisation can also delay or block notifications — tap Fix on that banner to allow unrestricted background activity for VisaStay."
+        },
+        {
+          "q": "What does the PENDING badge mean?",
+          "a": "A PENDING badge means a change was made while you were offline and hasn't synced to the server yet. This appears on trips, planned trips, and notification rules. Everything syncs automatically the next time you have a connection. You'll see an Offline indicator next to each screen title when this is the case."
+        },
+        {
+          "q": "My visa rule looks wrong. How do I report it?",
+          "a": "Tap the flag emoji on any trip card to open the official visa information page for that country. Use the Report a Visa Change option in the app menu to flag an error. We review reports and update the database promptly."
+        },
+        {
+          "q": "The app is stuck on a loading screen.",
+          "a": "Try closing and reopening the app. If the problem persists, check your internet connection. If you're offline, the app will load from cached data — pull down to refresh once you're back online."
+        },
+        {
+          "q": "I can't sign in when I'm offline.",
+          "a": "Email and password login requires an internet connection. If you have biometric login enabled (Profile → Biometric App Unlock), you can use that to access the app offline. Otherwise, connect to the internet and try again."
+        }
+      ]
+    }
+  ]
+}
