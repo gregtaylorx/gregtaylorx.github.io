@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "sections": [
     {
       "title": "General",
@@ -140,15 +140,31 @@
       "items": [
         {
           "q": "What notifications does VisaStay send?",
-          "a": "VisaStay can notify you a set number of days before your visa expires — for example, 14 days, 7 days, and 1 day before. You can customize these rules in the Notifications section."
+          "a": "VisaStay can send push notifications a set number of days before your visa expires — for example, 14 days, 7 days, and 1 day before your planned departure. Pro users can also receive email alerts for visa expiry, passport expiry, 183-day tax residency threshold, and Schengen 90/180-day breach. All rules are fully customizable in the Notifications screen."
         },
         {
           "q": "How many notification rules can I set?",
-          "a": "Free accounts get 1 system notification rule. Pro accounts can set up to 12 rules with custom timing and email alerts."
+          "a": "Free accounts get 1 push notification rule. Pro accounts can set up to 12 rules with custom timing and email alerts."
         },
         {
           "q": "Can VisaStay email me when my visa is expiring?",
-          "a": "Yes — email notifications are a Pro feature. You can also set up automatic emails to notify someone else (a family member, accountant, or employer) when your stay is ending."
+          "a": "Yes — email notifications are a Pro feature. You can also enter a second email address on each rule to notify someone else (a family member, accountant, or employer) at the same time."
+        },
+        {
+          "q": "Will I get notifications if my phone is in Do Not Disturb mode?",
+          "a": "Notifications posted while Do Not Disturb (DND) is active are queued by Android and iOS and will appear when DND ends — they are not lost. However they will not make a sound or vibrate during DND.\n\nIf you use a strict DND mode set to \"Priority only\", notifications from apps not on your priority list may be suppressed entirely. To ensure VisaStay alerts always come through, add VisaStay to your DND exceptions list in your phone's sound or notification settings.\n\nEmail alerts are sent from our server regardless of your phone's DND setting and will be waiting in your inbox when you check."
+        },
+        {
+          "q": "Will notifications fire if I force-close the app?",
+          "a": "On iPhone and iPad, yes — iOS delivers scheduled notifications independently of whether the app is running.\n\nOn Android, behavior depends on how the app was closed. If the app is in the background (swiped away but not force-stopped), notifications fire as scheduled. If the app is fully force-stopped via Android Settings → Apps → Force Stop, the OS blocks all background activity for that app until you reopen it. This is an Android system restriction that affects all apps.\n\nEmail notifications are sent from our server and are not affected by whether the app is running."
+        },
+        {
+          "q": "Why did I get multiple alerts for the same trip?",
+          "a": "Each notification rule fires independently. If you have rules set for 7 days and 1 day before departure, you'll receive two separate notifications for the same trip — one at each threshold. This is by design. To reduce alerts, remove rules you don't need in the Notifications screen."
+        },
+        {
+          "q": "I'm not receiving email notifications. What should I check?",
+          "a": "First, check your spam or junk folder — emails come from notifications@mail.headfirstservices.com and may be filtered initially. Mark the sender as safe to ensure future delivery.\n\nAlso confirm that the email address on your notification rule is correct (tap the rule to edit it), and that the Email toggle is enabled for that rule. Email notifications require a Pro subscription."
         }
       ]
     },
@@ -211,7 +227,7 @@
         },
         {
           "q": "Notifications aren't working on my Android device.",
-          "a": "Open the Notifications screen in VisaStay. If you see a warning banner, tap Fix to grant the required permission. On Android 12+, VisaStay needs exact alarm permission to deliver alerts at the correct time. On some Android phones, battery optimisation can also delay or block notifications — tap Fix on that banner to allow unrestricted background activity for VisaStay."
+          "a": "Open the Notifications screen in VisaStay and check for any warning banners — tap Fix on each one to grant the required permissions.\n\nOn Android 12+, VisaStay needs exact alarm permission to deliver alerts at the correct time. On some phones, battery optimisation can delay or block background activity — tap Fix on that banner to allow unrestricted background activity for VisaStay.\n\nIf you have force-stopped VisaStay via Android Settings → Apps → Force Stop, Android blocks all background activity for the app until you reopen it. This is an OS-level restriction. Reopen the app and notifications will resume.\n\nIf notifications are still missing, check that email alerts are enabled as a fallback — email is sent from our server and is not affected by phone settings."
         },
         {
           "q": "What does the PENDING badge mean?",
