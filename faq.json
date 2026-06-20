@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "sections": [
     {
       "title": "General",
@@ -14,7 +14,7 @@
         },
         {
           "q": "Which countries are supported?",
-          "a": "VisaStay currently covers 30 passports and 157 destination countries across Europe, Asia, the Middle East, Africa, and the Americas. More countries are added as we get requests. If your passport or destination isn't listed, use the Report a Visa Change button to request it or email us."
+          "a": "VisaStay currently covers 31 passports and 157 destination countries across Europe, Asia, the Middle East, Africa, and the Americas. We add more based on demand. If your passport isn't listed, tap \"Don't see your passport? Request it\" on the sign-in or setup screen and we'll review adding it. To flag an incorrect rule for a destination we already cover, use Report a Visa Change."
         },
         {
           "q": "How accurate is the visa information?",
@@ -68,7 +68,7 @@
         },
         {
           "q": "How many trips can I add on the free plan?",
-          "a": "Free accounts can have up to 5 active or upcoming trips at a time. Past trips don't count toward that limit. Upgrade to Pro for unlimited trips."
+          "a": "Free accounts can have up to 5 active or upcoming trips at a time (this includes planned future trips). Past trips don't count toward that limit. Upgrade to Pro for unlimited trips."
         },
         {
           "q": "Can I edit or delete a trip?",
@@ -89,19 +89,23 @@
       ]
     },
     {
-      "title": "Visa Planner",
+      "title": "Planning trips",
       "items": [
         {
-          "q": "What is the Visa Planner?",
-          "a": "The Visa Planner lets you map out future trips in sequence — adding planned legs one after another — and see the visa implications of each before you book anything."
+          "q": "How do I plan a future trip?",
+          "a": "Just add a trip with a future start date from the home screen. It appears as a \"Planning\" trip and shows the visa implications before you book anything — there's no separate planner."
         },
         {
-          "q": "How many planned trips can I add on the free plan?",
-          "a": "Free accounts can plan up to 3 legs. Pro accounts can plan up to 10 legs."
+          "q": "How many trips can I have on the free plan?",
+          "a": "Free accounts can have up to 5 trips at a time (active and planned combined). Pro accounts get unlimited trips."
         },
         {
-          "q": "Can I reorder planned trips?",
-          "a": "Yes, but drag-to-reorder is a Pro feature. Upgrade to Pro to reorganize your planned itinerary. This changes all downstream dates so recheck dates after moving planned trips."
+          "q": "Do planned trips count toward my limit?",
+          "a": "Yes — planned (future) trips count the same as active trips toward your trip limit."
+        },
+        {
+          "q": "Where is the calendar?",
+          "a": "The Visa Calendar is its own tab in the top navigation bar (the calendar icon). It shows all your trips — active and planned — as a month heat-map so you can see your travel and visa windows at a glance."
         }
       ]
     },
@@ -173,7 +177,7 @@
       "items": [
         {
           "q": "What is VisaStay Pro?",
-          "a": "Pro unlocks unlimited trips, up to 10 planned legs, automatic Schengen breach alerts, email notifications, full trip history, tax residency breakdown, CSV export, and more. See the full comparison on the upgrade screen."
+          "a": "Pro unlocks unlimited trips (active and planned), automatic Schengen breach alerts, email notifications, full trip history, tax residency breakdown, CSV export, and more. See the full comparison on the upgrade screen."
         },
         {
           "q": "How much does Pro cost?",
@@ -231,7 +235,7 @@
         },
         {
           "q": "What does the PENDING badge mean?",
-          "a": "A PENDING badge means a change was made while you were offline and hasn't synced to the server yet. This appears on trips, planned trips, and notification rules. Everything syncs automatically the next time you have a connection. You'll see an Offline indicator next to each screen title when this is the case."
+          "a": "A PENDING badge means a change was made while you were offline and hasn't synced to the server yet. This appears on trips and notification rules. Everything syncs automatically the next time you have a connection. You'll see an Offline indicator next to each screen title when this is the case."
         },
         {
           "q": "My visa rule looks wrong. How do I report it?",
