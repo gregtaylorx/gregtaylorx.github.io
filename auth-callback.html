@@ -1,73 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VisaStay — Confirming your email</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VisaStay</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      min-height: 100vh;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-      background: #f5f5f5;
-      color: #333;
+      padding: 24px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 40px 32px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
       text-align: center;
-      padding: 20px;
-      box-sizing: border-box;
     }
-    h1 { font-size: 1.5rem; margin-bottom: 8px; }
-    p { color: #666; font-size: 0.95rem; max-width: 320px; }
-    .spinner {
-      width: 40px; height: 40px;
-      border: 3px solid #ddd;
-      border-top-color: #007AFF;
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      margin-bottom: 24px;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .fallback { display: none; margin-top: 20px; }
+    .icon { font-size: 56px; margin-bottom: 16px; }
+    h1 { font-size: 22px; font-weight: 700; color: #1a1a2e; margin-bottom: 8px; }
+    p  { font-size: 15px; color: #666; line-height: 1.5; margin-bottom: 24px; }
     .btn {
       display: inline-block;
-      background: #007AFF;
-      color: white;
-      padding: 12px 28px;
+      background: #5b4fcf;
+      color: #fff;
+      border: none;
       border-radius: 10px;
-      text-decoration: none;
-      font-size: 1rem;
+      padding: 14px 28px;
+      font-size: 16px;
       font-weight: 600;
-      margin-top: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      width: 100%;
     }
+    .btn:hover { background: #4a3fbe; }
+    .note { font-size: 13px; color: #999; margin-top: 16px; }
   </style>
 </head>
 <body>
-  <div class="spinner"></div>
-  <h1>Opening VisaStay…</h1>
-  <p>Redirecting you back to the app to complete sign up.</p>
-
-  <div class="fallback" id="fallback">
-    <p>If the app didn't open automatically, tap the button below.</p>
-    <a id="deeplink" href="#" class="btn">Open VisaStay</a>
-    <p style="margin-top:16px; font-size:0.85rem;">
-      If you don't have the app installed, you can close this page and sign in manually.
-    </p>
+  <div class="card" id="card">
+    <div class="icon">✈️</div>
+    <h1>VisaStay</h1>
+    <p>Verifying…</p>
   </div>
 
   <script>
-    (function () {
-      var search = window.location.search;
-      var hash   = window.location.hash;
-      var deepLink = 'com.digitalnomadessentials.visastay://login-callback' + search + hash;
-      document.getElementById('deeplink').href = deepLink;
-      window.location.href = deepLink;
-      setTimeout(function () {
-        document.getElementById('fallback').style.display = 'block';
-      }, 2000);
-    })();
+    // ── Config (public values — safe to ship in a static page) ──────────────
+    var SUPABASE_URL  = 'https://aubnhaktbxapnhtwmcyj.supabase.co';
+    var SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF1Ym5oYWt0YnhhcG5odHdtY3lqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4Njg4NDksImV4cCI6MjA5MzQ0NDg0OX0.Kg5v1Fm712sFxiSsNMPMnXrxGAFcCBwL2K8IKIwiSWU';
+
+    // SCHEME must match the URL scheme registered in the app (AndroidManifest
+    // <data android:scheme> + iOS CFBundleURLSchemes) — the VisaStay scheme,
+    // NOT the Android applicationId. PACKAGE is the Android app id, used only
+    // to target the intent on Android.
+    var SCHEME  = 'com.digitalnomadessentials.visastay';
+    var PACKAGE = 'com.digitalnomadessentials.digital_nomad_essentials';
+
+    function buildDeepLink(path, queryStr) {
+      var isAndroid = /Android/i.test(navigator.userAgent);
+      if (isAndroid) {
+        return 'intent://' + path + '?' + queryStr
+             + '#Intent;scheme=' + SCHEME + ';package=' + PACKAGE + ';end';
+      }
+      return SCHEME + '://' + path + '?' + queryStr;
+    }
+
+    function render(icon, title, body, href, btnLabel, note) {
+      document.getElementById('card').innerHTML =
+        '<div class="icon">' + icon + '</div>' +
+        '<h1>' + title + '</h1>' +
+        '<p>' + body + '</p>' +
+        (href ? '<a href="' + href + '" class="btn">' + btnLabel + '</a>' : '') +
+        (note ? '<p class="note">' + note + '</p>' : '');
+    }
+
+    function showConfirmed() {
+      var link = buildDeepLink('login-callback', 'type=confirmed');
+      render('✅', 'Email Confirmed!',
+        'Your email is confirmed. Open VisaStay and sign in with your email and password.',
+        link, 'Open VisaStay',
+        'VisaStay must be installed on this device.');
+    }
+
+    // Used for already-consumed / expired links. Because an email security
+    // scanner may have opened the link first (which already confirmed the
+    // account), we guide the user to sign in rather than implying breakage.
+    function showAlreadyDone() {
+      var link = buildDeepLink('login-callback', 'type=confirmed');
+      render('✅', 'Email Confirmed',
+        'This link was already used — usually because your inbox opened it ' +
+        'automatically, which confirms your account. Open VisaStay and sign in. ' +
+        'If sign-in says your email isn\'t verified, tap “Resend Email” in the app.',
+        link, 'Open VisaStay', null);
+    }
+
+    function showRecovery(qs) {
+      var link = buildDeepLink('login-callback', qs);
+      render('🔑', 'Reset Your Password',
+        'Tap below to open VisaStay and set your new password.',
+        link, 'Open VisaStay',
+        'VisaStay must be installed on this device.');
+    }
+
+    async function init() {
+      var query = new URLSearchParams(window.location.search);
+      var hash  = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+
+      var tokenHash   = query.get('token_hash');
+      var type        = query.get('type') || hash.get('type') || '';
+      var code        = query.get('code');
+      var accessToken = hash.get('access_token');
+      var errorDesc   = query.get('error_description') || hash.get('error_description');
+      var errorCode   = query.get('error_code') || hash.get('error_code');
+
+      // ── Recovery (password reset) keeps the existing code/token deep-link
+      //    path — the app needs the session to set a new password in-app. ──
+      if (type === 'recovery' && (code || accessToken)) {
+        if (code) {
+          showRecovery('code=' + encodeURIComponent(code) + '&type=recovery');
+        } else {
+          showRecovery(
+            'access_token=' + encodeURIComponent(hash.get('access_token') || '') +
+            '&refresh_token=' + encodeURIComponent(hash.get('refresh_token') || '') +
+            '&type=recovery');
+        }
+        return;
+      }
+
+      // ── Signup confirmation via token_hash — verified client-side with a
+      //    POST (verifyOtp), so GET-only email scanners can't consume it. ──
+      if (tokenHash) {
+        try {
+          var client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, {
+            auth: { detectSessionInUrl: false, persistSession: false }
+          });
+          var result = await client.auth.verifyOtp({
+            token_hash: tokenHash,
+            type: type || 'email'
+          });
+          if (result.error) {
+            // Token already used (likely a scanner confirmed it) or expired.
+            showAlreadyDone();
+          } else {
+            showConfirmed();
+          }
+        } catch (e) {
+          showAlreadyDone();
+        }
+        return;
+      }
+
+      // ── Legacy/fallback: confirmation via code or implicit token. ──
+      if (code) {
+        var link = buildDeepLink('login-callback',
+          'code=' + encodeURIComponent(code) + '&type=' + encodeURIComponent(type || 'signup'));
+        render('✅', 'Email Confirmed!',
+          'Your email is confirmed. Tap below to open VisaStay.',
+          link, 'Open VisaStay', 'VisaStay must be installed on this device.');
+        return;
+      }
+      if (accessToken) {
+        var link2 = buildDeepLink('login-callback',
+          'access_token=' + encodeURIComponent(hash.get('access_token') || '') +
+          '&refresh_token=' + encodeURIComponent(hash.get('refresh_token') || '') +
+          '&type=' + encodeURIComponent(type));
+        render('✅', 'Email Confirmed!',
+          'Your email is confirmed. Tap below to open VisaStay.',
+          link2, 'Open VisaStay', 'VisaStay must be installed on this device.');
+        return;
+      }
+
+      // Error params, or nothing usable → treat as already-confirmed guidance.
+      showAlreadyDone();
+    }
+
+    if (window.supabase) {
+      init();
+    } else {
+      window.addEventListener('DOMContentLoaded', init);
+    }
   </script>
 </body>
 </html>
