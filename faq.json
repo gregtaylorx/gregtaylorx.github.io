@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "sections": [
     {
       "title": "General",
@@ -14,7 +14,7 @@
         },
         {
           "q": "Which countries are supported?",
-          "a": "VisaStay currently covers 31 passports and 157 destination countries across Europe, Asia, the Middle East, Africa, and the Americas. We add more based on demand. If your passport isn't listed, tap \"Don't see your passport? Request it\" on the sign-in or setup screen and we'll review adding it. To flag an incorrect rule for a destination we already cover, use Report a Visa Change."
+          "a": "VisaStay currently covers 32 passports and 157 destination countries across Europe, Asia, the Middle East, Africa, and the Americas. We add more based on demand. If your passport isn't listed, tap \"Don't see your passport? Request it\" on the sign-in or setup screen and we'll review adding it. To flag an incorrect rule for a destination we already cover, use Report a Visa Change."
         },
         {
           "q": "How accurate is the visa information?",
