@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "sections": [
     {
       "title": "General",
@@ -240,6 +240,10 @@
         {
           "q": "My visa rule looks wrong. How do I report it?",
           "a": "Tap the flag emoji on any trip card to open the official visa information page for that country. Use the Report a Visa Change option in the app menu to flag an error. We review reports and update the database promptly."
+        },
+        {
+          "q": "Is the 183-day tax residency threshold accurate for my country?",
+          "a": "183 days is a common default, but actual tax residency rules vary by country — some use different day counts, fiscal-year definitions, or facts-and-circumstances tests instead of a simple day count. This feature is general guidance only, not tax advice — consult a qualified tax professional before making any filing or residency decision. If you spot an inaccuracy, use Report a Tax Info Change in the Tax Residency Alert section of Notifications."
         },
         {
           "q": "The app is stuck on a loading screen.",
