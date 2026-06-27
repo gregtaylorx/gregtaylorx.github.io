@@ -193,11 +193,11 @@
         },
         {
           "q": "How do I restore a purchase after reinstalling?",
-          "a": "Go to Profile → Restore Purchases. This reconnects your Google Play or App Store purchase to your account."
+          "a": "Go to Profile → Restore Purchases. This reconnects your existing purchase to your account."
         },
         {
           "q": "How do I cancel my subscription?",
-          "a": "Subscriptions are managed through Google Play (Android) or the App Store (iOS). Open the relevant store app, go to Subscriptions, and cancel from there. VisaStay cannot cancel subscriptions directly."
+          "a": "Subscriptions are managed through your device's app store. Open its account or subscriptions settings and cancel from there. VisaStay cannot cancel subscriptions directly."
         }
       ]
     },
