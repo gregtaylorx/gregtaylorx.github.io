@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "sections": [
     {
       "title": "About VisaStay",
@@ -48,10 +48,6 @@
         {
           "q": "Which countries can I visit visa-free with my passport?",
           "a": "It depends on your passport's current visa-free agreements, which change periodically. Set your passport once during onboarding and VisaStay shows live entry-type and stay-length data for all 157 destinations — no need to look it up country by country."
-        },
-        {
-          "q": "My visa rule looks wrong. How do I report it?",
-          "a": "Tap the flag emoji on any trip card to open the official visa information page for that country, then use Report a Visa Change in the app menu. We review reports and update the database promptly."
         }
       ]
     },
@@ -86,10 +82,6 @@
         {
           "q": "What is the 183-day tax residency rule?",
           "a": "183 days is a common threshold many countries use to determine tax residency, though rules vary by country. VisaStay's Trip History → Tax Year view tracks days spent per country and flags a potential breach. This is general guidance only, not tax advice — consult a qualified tax professional for your situation."
-        },
-        {
-          "q": "Can VisaStay track multiple trips and countries at once?",
-          "a": "Yes — every trip across every destination lives in one dashboard, plus a calendar heat-map view of your travel history and upcoming plans."
         }
       ]
     },
@@ -136,6 +128,139 @@
         {
           "q": "How do I request deletion of my data?",
           "a": "Go to Profile → Delete Account, or email privacy@headfirstservices.com directly. We'll delete your account and all associated data within 7 days."
+        }
+      ]
+    },
+    {
+      "title": "Visa Combinations by Passport",
+      "items": [
+        {
+          "q": "What Australia passport/visa combinations do you support?",
+          "a": "VisaStay covers Australia passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, and New Zealand. Open VisaStay, set your passport to Australia, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What Austria passport/visa combinations do you support?",
+          "a": "VisaStay covers Austria passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to Austria, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What Belgium passport/visa combinations do you support?",
+          "a": "VisaStay covers Belgium passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to Belgium, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What Brazil passport/visa combinations do you support?",
+          "a": "VisaStay covers Brazil passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to Brazil, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What Canada passport/visa combinations do you support?",
+          "a": "VisaStay covers Canada passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Australia, and New Zealand. Open VisaStay, set your passport to Canada, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What China passport/visa combinations do you support?",
+          "a": "VisaStay covers China passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to China, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What France passport/visa combinations do you support?",
+          "a": "VisaStay covers France passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to France, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What Germany passport/visa combinations do you support?",
+          "a": "VisaStay covers Germany passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to Germany, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What India passport/visa combinations do you support?",
+          "a": "VisaStay covers India passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to India, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What Indonesia passport/visa combinations do you support?",
+          "a": "VisaStay covers Indonesia passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to Indonesia, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What Italy passport/visa combinations do you support?",
+          "a": "VisaStay covers Italy passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to Italy, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What Japan passport/visa combinations do you support?",
+          "a": "VisaStay covers Japan passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to Japan, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What Malaysia passport/visa combinations do you support?",
+          "a": "VisaStay covers Malaysia passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to Malaysia, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What Mexico passport/visa combinations do you support?",
+          "a": "VisaStay covers Mexico passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to Mexico, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What Netherlands passport/visa combinations do you support?",
+          "a": "VisaStay covers Netherlands passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to Netherlands, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What New Zealand passport/visa combinations do you support?",
+          "a": "VisaStay covers New Zealand passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, and Australia. Open VisaStay, set your passport to New Zealand, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What Norway passport/visa combinations do you support?",
+          "a": "VisaStay covers Norway passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to Norway, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What Philippines passport/visa combinations do you support?",
+          "a": "VisaStay covers Philippines passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to Philippines, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What Poland passport/visa combinations do you support?",
+          "a": "VisaStay covers Poland passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to Poland, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What Portugal passport/visa combinations do you support?",
+          "a": "VisaStay covers Portugal passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to Portugal, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What Singapore passport/visa combinations do you support?",
+          "a": "VisaStay covers Singapore passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to Singapore, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What South Africa passport/visa combinations do you support?",
+          "a": "VisaStay covers South Africa passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to South Africa, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What South Korea passport/visa combinations do you support?",
+          "a": "VisaStay covers South Korea passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to South Korea, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What Spain passport/visa combinations do you support?",
+          "a": "VisaStay covers Spain passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to Spain, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What Sweden passport/visa combinations do you support?",
+          "a": "VisaStay covers Sweden passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to Sweden, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What Switzerland passport/visa combinations do you support?",
+          "a": "VisaStay covers Switzerland passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to Switzerland, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What Thailand passport/visa combinations do you support?",
+          "a": "VisaStay covers Thailand passport holders for all 157 supported destinations, including the most-searched combinations: Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to Thailand, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What Tanzania passport/visa combinations do you support?",
+          "a": "VisaStay covers Tanzania passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to Tanzania, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What UAE passport/visa combinations do you support?",
+          "a": "VisaStay covers UAE passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to UAE, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What United Kingdom passport/visa combinations do you support?",
+          "a": "VisaStay covers United Kingdom passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to United Kingdom, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What United States passport/visa combinations do you support?",
+          "a": "VisaStay covers United States passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Vietnam, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, Canada, Australia, and New Zealand. Open VisaStay, set your passport to United States, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
+        },
+        {
+          "q": "What Vietnam passport/visa combinations do you support?",
+          "a": "VisaStay covers Vietnam passport holders for all 157 supported destinations, including the most-searched combinations: Thailand, Indonesia, Philippines, Malaysia, Singapore, Japan, South Korea, India, Sri Lanka, Cambodia, UAE, Turkey, Georgia, Portugal, Spain, France, Italy, Greece, Germany, Netherlands, United Kingdom, Croatia, Albania, Czech Republic, Morocco, South Africa, Kenya, Mexico, Costa Rica, Panama, Colombia, Brazil, Argentina, Peru, United States, Canada, Australia, and New Zealand. Open VisaStay, set your passport to Vietnam, and select any destination to see the exact entry type (visa-free, visa on arrival, eVisa, ETA, or visa required) and maximum stay."
         }
       ]
     }
