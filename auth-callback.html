@@ -110,6 +110,14 @@
         'VisaStay must be installed on this device.');
     }
 
+    // Genuinely expired / already-used recovery token.
+    function showRecoveryExpired() {
+      render('⚠️', 'Reset Link Expired',
+        'This password reset link has expired or was already used. ' +
+        'Open VisaStay, tap “Forgot Password”, and request a new one.',
+        null, null, null);
+    }
+
     async function init() {
       var query = new URLSearchParams(window.location.search);
       var hash  = new URLSearchParams(window.location.hash.replace(/^#/, ''));
@@ -135,9 +143,12 @@
         return;
       }
 
-      // ── Signup confirmation via token_hash — verified client-side with a
-      //    POST (verifyOtp), so GET-only email scanners can't consume it. ──
+      // ── token_hash flow — verified client-side with a POST (verifyOtp), so
+      //    GET-only email scanners can't consume the link. Handles BOTH signup
+      //    confirmation AND password recovery (the Reset Password template uses
+      //    token_hash + type=recovery). ──
       if (tokenHash) {
+        var isRecovery = (type === 'recovery');
         try {
           var client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, {
             auth: { detectSessionInUrl: false, persistSession: false }
@@ -147,13 +158,24 @@
             type: type || 'email'
           });
           if (result.error) {
-            // Token already used (likely a scanner confirmed it) or expired.
-            showAlreadyDone();
+            // Token already used (scanner/preview) or expired.
+            if (isRecovery) showRecoveryExpired();
+            else showAlreadyDone();
+          } else if (isRecovery) {
+            // Hand the recovery session to the app so it can set a new password.
+            // (Same access_token+refresh_token+type=recovery shape the app's
+            // deep-link handler already accepts from the legacy implicit path.)
+            var s = (result.data && result.data.session) || {};
+            showRecovery(
+              'access_token=' + encodeURIComponent(s.access_token || '') +
+              '&refresh_token=' + encodeURIComponent(s.refresh_token || '') +
+              '&type=recovery');
           } else {
             showConfirmed();
           }
         } catch (e) {
-          showAlreadyDone();
+          if (isRecovery) showRecoveryExpired();
+          else showAlreadyDone();
         }
         return;
       }
