@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZoneLink</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 40px 32px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    .icon { font-size: 56px; margin-bottom: 16px; }
+    h1 { font-size: 22px; font-weight: 700; color: #1a1a2e; margin-bottom: 8px; }
+    p  { font-size: 15px; color: #666; line-height: 1.5; margin-bottom: 24px; }
+    .btn {
+      display: inline-block;
+      background: #4338ca;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 14px 28px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      width: 100%;
+    }
+    .btn:hover { background: #3730a3; }
+    .note { font-size: 13px; color: #999; margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <div class="card" id="card">
+    <div class="icon">🕐</div>
+    <h1>ZoneLink</h1>
+    <p>Verifying…</p>
+  </div>
+
+  <script>
+    // ── Config (public values — safe to ship in a static page) ──────────────
+    // ZoneLink_1 — its own Supabase project, separate from VisaStay's Nomad_1.
+    var SUPABASE_URL  = 'https://ydjutilhajawhubewoqd.supabase.co';
+    var SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlkanV0aWxoYWphd2h1YmV3b3FkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMxNjA5MjUsImV4cCI6MjA5ODczNjkyNX0.POhhNXVXeAJxXpVnRR8p_9ZbhCyMVWZFsKTr7JOE8ig';
+
+    // SCHEME must match the URL scheme registered in the app
+    // (AndroidManifest <data android:scheme>) — the ZoneLink scheme, NOT
+    // the Android applicationId. PACKAGE is the Android app id, used only
+    // to target the intent on Android.
+    var SCHEME  = 'com.digitalnomadessentials.zonelink';
+    var PACKAGE = 'com.digitalnomadessentials.zonelink';
+
+    function buildDeepLink(path, queryStr) {
+      var isAndroid = /Android/i.test(navigator.userAgent);
+      if (isAndroid) {
+        return 'intent://' + path + '?' + queryStr
+             + '#Intent;scheme=' + SCHEME + ';package=' + PACKAGE + ';end';
+      }
+      return SCHEME + '://' + path + '?' + queryStr;
+    }
+
+    function render(icon, title, body, href, btnLabel, note) {
+      document.getElementById('card').innerHTML =
+        '<div class="icon">' + icon + '</div>' +
+        '<h1>' + title + '</h1>' +
+        '<p>' + body + '</p>' +
+        (href ? '<a href="' + href + '" class="btn">' + btnLabel + '</a>' : '') +
+        (note ? '<p class="note">' + note + '</p>' : '');
+    }
+
+    function showConfirmed() {
+      var link = buildDeepLink('login-callback', 'type=confirmed');
+      render('✅', 'Email Confirmed!',
+        'Your email is confirmed. Open ZoneLink and sign in with your email and password.',
+        link, 'Open ZoneLink',
+        'ZoneLink must be installed on this device.');
+    }
+
+    // Used for already-consumed / expired links. Because an email security
+    // scanner may have opened the link first (which already confirmed the
+    // account), we guide the user to sign in rather than implying breakage.
+    function showAlreadyDone() {
+      var link = buildDeepLink('login-callback', 'type=confirmed');
+      render('✅', 'Email Confirmed',
+        'This link was already used — usually because your inbox opened it ' +
+        'automatically, which confirms your account. Open ZoneLink and sign in.',
+        link, 'Open ZoneLink', null);
+    }
+
+    function showRecovery(qs) {
+      var link = buildDeepLink('login-callback', qs);
+      render('🔑', 'Reset Your Password',
+        'Tap below to open ZoneLink and set your new password.',
+        link, 'Open ZoneLink',
+        'ZoneLink must be installed on this device.');
+    }
+
+    // Genuinely expired / already-used recovery token.
+    function showRecoveryExpired() {
+      render('⚠️', 'Reset Link Expired',
+        'This password reset link has expired or was already used. ' +
+        'Open ZoneLink, tap “Forgot password?”, and request a new one.',
+        null, null, null);
+    }
+
+    async function init() {
+      var query = new URLSearchParams(window.location.search);
+      var hash  = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+
+      var tokenHash   = query.get('token_hash');
+      var type        = query.get('type') || hash.get('type') || '';
+      var code        = query.get('code');
+      var accessToken = hash.get('access_token');
+
+      // ── Recovery (password reset) keeps the existing code/token deep-link
+      //    path — the app needs the session to set a new password in-app. ──
+      if (type === 'recovery' && (code || accessToken)) {
+        if (code) {
+          showRecovery('code=' + encodeURIComponent(code) + '&type=recovery');
+        } else {
+          showRecovery(
+            'access_token=' + encodeURIComponent(hash.get('access_token') || '') +
+            '&refresh_token=' + encodeURIComponent(hash.get('refresh_token') || '') +
+            '&type=recovery');
+        }
+        return;
+      }
+
+      // ── token_hash flow — verified client-side with a POST (verifyOtp), so
+      //    GET-only email scanners can't consume the link. Handles BOTH signup
+      //    confirmation AND password recovery (Reset Password template uses
+      //    token_hash + type=recovery). ──
+      if (tokenHash) {
+        var isRecovery = (type === 'recovery');
+        try {
+          var client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, {
+            auth: { detectSessionInUrl: false, persistSession: false }
+          });
+          var result = await client.auth.verifyOtp({
+            token_hash: tokenHash,
+            type: type || 'email'
+          });
+          if (result.error) {
+            if (isRecovery) showRecoveryExpired();
+            else showAlreadyDone();
+          } else if (isRecovery) {
+            var s = (result.data && result.data.session) || {};
+            showRecovery(
+              'access_token=' + encodeURIComponent(s.access_token || '') +
+              '&refresh_token=' + encodeURIComponent(s.refresh_token || '') +
+              '&type=recovery');
+          } else {
+            showConfirmed();
+          }
+        } catch (e) {
+          if (isRecovery) showRecoveryExpired();
+          else showAlreadyDone();
+        }
+        return;
+      }
+
+      // ── Legacy/fallback: confirmation via code or implicit token. ──
+      if (code) {
+        var link = buildDeepLink('login-callback',
+          'code=' + encodeURIComponent(code) + '&type=' + encodeURIComponent(type || 'signup'));
+        render('✅', 'Email Confirmed!',
+          'Your email is confirmed. Tap below to open ZoneLink.',
+          link, 'Open ZoneLink', 'ZoneLink must be installed on this device.');
+        return;
+      }
+      if (accessToken) {
+        var link2 = buildDeepLink('login-callback',
+          'access_token=' + encodeURIComponent(hash.get('access_token') || '') +
+          '&refresh_token=' + encodeURIComponent(hash.get('refresh_token') || '') +
+          '&type=' + encodeURIComponent(type));
+        render('✅', 'Email Confirmed!',
+          'Your email is confirmed. Tap below to open ZoneLink.',
+          link2, 'Open ZoneLink', 'ZoneLink must be installed on this device.');
+        return;
+      }
+
+      showAlreadyDone();
+    }
+
+    if (window.supabase) {
+      init();
+    } else {
+      window.addEventListener('DOMContentLoaded', init);
+    }
+  </script>
+</body>
+</html>
