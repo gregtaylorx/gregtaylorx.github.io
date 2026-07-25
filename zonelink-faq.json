@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "sections": [
+    {
+      "title": "About ZoneLink",
+      "items": [
+        {
+          "q": "What is ZoneLink?",
+          "a": "ZoneLink is a time-zone overlap planner. Add the people or places you coordinate with, and the Slider shows every zone's local time side by side on one scrubbable ribbon — so you can see, at a glance, who's asleep, working, or awake at any moment, and drag to any point in the day to check a specific time."
+        },
+        {
+          "q": "Who is ZoneLink for?",
+          "a": "Anyone juggling people or plans across time zones: remote teams, freelancers with international clients, long-distance relationships, and frequent travelers who want to know what time it is back home — or at their next destination — without doing the math themselves."
+        },
+        {
+          "q": "How is this different from a plain world clock app?",
+          "a": "A world clock shows the current time per city. ZoneLink's Slider shows an entire day at once, color-banded by sleep/work/awake hours for every zone, and lets you scrub to any hour — today or a future date — to instantly see whether a time works for everyone. It also groups zones into named Boards you can save and reopen."
+        },
+        {
+          "q": "What is a Board?",
+          "a": "A Board is a saved group of zones — e.g. \"Design Team\" (you, a designer in London, a PM in Singapore) or \"Family\" (you, your parents back home). Save a Board from Home and it appears in History; tap it any time to reopen the Slider for that exact group."
+        },
+        {
+          "q": "What's the difference between Home and History?",
+          "a": "Home is the workbench — pick zones, see the Slider, optionally star and save. History is where every saved Board lives, starred ones pinned to the top. Long-press any History Board and choose \"Copy to Home\" to make it your live, editable Home screen — edits to either stay in sync."
+        }
+      ]
+    },
+    {
+      "title": "Using the Slider",
+      "items": [
+        {
+          "q": "How do I check a specific time, like 3pm my time?",
+          "a": "Drag anywhere on the ribbon to scrub to that moment — every zone's local time updates live as you drag. Drag near either edge and it keeps scrolling on its own, faster the closer you get to the edge, so you can reach hours off-screen without repeated swipes."
+        },
+        {
+          "q": "What do the colors on the ribbon mean?",
+          "a": "Each zone's row is banded by local time of day — typically sleep, work, and awake-but-off-hours — so you can tell at a glance whether a proposed time lands during someone's workday or the middle of their night."
+        },
+        {
+          "q": "What do the 12h / 24h / 2d / 4d controls do?",
+          "a": "They zoom the ribbon's visible time window — 12 or 24 hours for a single day's detail, or 2d/4d to see multiple days at once for planning further ahead."
+        },
+        {
+          "q": "Can I add more than a few zones to one Board?",
+          "a": "Free Boards include up to 4 zones each. Pro removes that cap."
+        },
+        {
+          "q": "Does ZoneLink handle Daylight Saving Time automatically?",
+          "a": "Yes — zones are IANA time-zone identifiers, so DST transitions are handled automatically. ZoneLink also shows a banner in the two weeks before any zone on your Board changes its clocks, so a time that works today doesn't quietly stop working after a DST shift."
+        }
+      ]
+    },
+    {
+      "title": "Home-Screen Widgets",
+      "items": [
+        {
+          "q": "Is there a home-screen widget?",
+          "a": "Yes, on Android — the Zones Clock widget shows live local time for every zone on a Board you pick, right on your home screen, no need to open the app. Long-press your home screen → Widgets → ZoneLink to add it, then use its gear icon to choose which Board it displays."
+        },
+        {
+          "q": "Is the widget available on iPhone?",
+          "a": "Not yet — iOS support (including a widget) is planned; the app has launched Android-first."
+        },
+        {
+          "q": "Why did my widget stop updating?",
+          "a": "Reopen the app and view the Board the widget is bound to — that republishes fresh data. If you're past your free trial and grace period without a Pro purchase, widgets pause and show a prompt to reopen the app instead."
+        }
+      ]
+    },
+    {
+      "title": "Subscription & Pricing",
+      "items": [
+        {
+          "q": "Is ZoneLink free?",
+          "a": "Every new account gets a 2-week free trial with full access, no credit card required, starting the first time you save a Board. After the trial, a short grace period follows before Pro features (including desktop widgets) require a one-time purchase."
+        },
+        {
+          "q": "What happens when my trial ends?",
+          "a": "You get a short grace period with a reminder. Once both the trial and grace period end, desktop widgets pause and the app shows a paywall — you can still open the app, but full functionality requires the one-time Pro purchase."
+        },
+        {
+          "q": "Is ZoneLink a subscription?",
+          "a": "No — ZoneLink Pro is a single one-time (lifetime) purchase, not a recurring subscription."
+        },
+        {
+          "q": "How do I restore my purchase after reinstalling or switching devices?",
+          "a": "Go to Profile → Restore Purchases. This reconnects your existing Pro purchase to your account."
+        }
+      ]
+    },
+    {
+      "title": "Privacy & Data",
+      "items": [
+        {
+          "q": "What data does ZoneLink store?",
+          "a": "Your email address and the Boards/zones you create (names, time zones, colors). No location data is collected."
+        },
+        {
+          "q": "Where is my data stored?",
+          "a": "Securely on Supabase (PostgreSQL), hosted on AWS infrastructure. Boards also sync to your device for offline use and stay in sync once you're back online."
+        },
+        {
+          "q": "How do I request deletion of my data?",
+          "a": "Go to Profile → Delete Account, or email privacy@headfirstservices.com directly. We'll delete your account and all associated data within 7 days."
+        },
+        {
+          "q": "Does ZoneLink share data with VisaStay or other Outbound Suite apps?",
+          "a": "No — each app in the Outbound Suite has its own separate account system and database. Nothing is shared between ZoneLink and VisaStay unless a future cross-app feature explicitly asks your permission first."
+        }
+      ]
+    }
+  ]
+}
