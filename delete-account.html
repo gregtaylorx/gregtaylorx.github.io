@@ -3,42 +3,156 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VisaStay — Delete Account</title>
+  <title>Delete Your Account — HeadFirst Services</title>
+  <meta name="description" content="Delete your VisaStay, ZoneLink or TripGear account and its data. Choose the apps, then delete in the app or send one email request." />
+  <link rel="canonical" href="https://privacy.headfirstservices.com/delete-account.html" />
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      max-width: 600px;
+      max-width: 640px;
       margin: 60px auto;
       padding: 0 24px;
       color: #1a1a1a;
       line-height: 1.6;
     }
-    h1 { color: #0f1923; }
-    a { color: #e07b39; }
+    h1 { color: #0f1923; margin-bottom: 8px; }
+    h2 { color: #0f1923; font-size: 1.15rem; margin: 32px 0 8px; }
+    h3 { margin: 0 0 6px; font-size: 1.05rem; }
+    a { color: #0d7d8f; }
+    .lede { color: #55707d; margin-top: 0; }
+    fieldset { border: 1px solid #e2e9ec; border-radius: 10px; padding: 12px 16px; margin: 0; }
+    legend { font-weight: 600; padding: 0 6px; }
+    .app-option { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; cursor: pointer; }
+    .app-option input { margin-top: 5px; width: 18px; height: 18px; flex: none; }
+    .app-option span small { display: block; color: #55707d; }
+    .app-panel { border: 1px solid #e2e9ec; border-radius: 10px; padding: 16px 18px; margin: 12px 0; background: #f6f9fb; }
+    .app-panel ol, .app-panel ul { padding-left: 20px; margin: 6px 0; }
+    .muted { color: #55707d; font-size: 0.92rem; }
+    label.field { display: block; font-weight: 600; margin: 16px 0 6px; }
+    input[type="email"] { width: 100%; box-sizing: border-box; padding: 10px 12px; font-size: 1rem; border: 1px solid #c9d5da; border-radius: 8px; }
     .btn {
       display: inline-block;
-      margin-top: 24px;
+      margin-top: 18px;
       padding: 12px 24px;
-      background: #e07b39;
+      background: #c0392b;
       color: #fff;
       text-decoration: none;
       border-radius: 8px;
       font-weight: 600;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
     }
-    ul { padding-left: 20px; }
+    .btn[aria-disabled="true"] { background: #b9c3c7; pointer-events: none; }
+    .note { border-left: 3px solid #0d7d8f; padding: 8px 14px; background: #f6f9fb; margin: 24px 0; font-size: 0.95rem; }
+    .hidden { display: none; }
   </style>
+  <noscript><style>.app-panel.hidden { display: block; } #none-selected { display: none; }</style></noscript>
 </head>
 <body>
-  <h1>Delete Your VisaStay Account</h1>
-  <p>To request deletion of your VisaStay account and all associated data, send an email to:</p>
-  <p><strong><a href="mailto:privacy@headfirstservices.com">privacy@headfirstservices.com</a></strong></p>
-  <p>Please include your registered email address in the request. We will process your deletion request within 30 days and confirm via email when complete.</p>
-  <p>Data deleted includes:</p>
-  <ul>
-    <li>Your account and login credentials</li>
-    <li>Your profile information (email, passport country, home currency)</li>
-    <li>All trip data</li>
-  </ul>
-  <a class="btn" href="mailto:privacy@headfirstservices.com?subject=Delete%20My%20VisaStay%20Account">Request Account Deletion</a>
+  <h1 id="page-title">Delete Your Account</h1>
+  <p class="lede">HeadFirst Services apps each have their own separate account. Deleting one never affects the others — choose every app you want removed.</p>
+
+  <form id="delete-form" onsubmit="return false;">
+    <fieldset>
+      <legend>Which apps?</legend>
+      <label class="app-option"><input type="checkbox" name="app" value="visastay"><span>VisaStay<small>Visa day and tax residency tracker</small></span></label>
+      <label class="app-option"><input type="checkbox" name="app" value="zonelink"><span>ZoneLink<small>Time-zone planner</small></span></label>
+      <label class="app-option"><input type="checkbox" name="app" value="tripgear"><span>TripGear<small>Packing lists (formerly PackLite)</small></span></label>
+    </fieldset>
+  </form>
+
+  <h2>Fastest: delete in the app</h2>
+  <p class="muted" id="none-selected">Select an app above to see its steps.</p>
+
+  <div class="app-panel hidden" data-app="visastay">
+    <h3>VisaStay</h3>
+    <ol>
+      <li>Open VisaStay and go to <strong>Profile</strong></li>
+      <li>Tap <strong>Delete Account</strong> and confirm</li>
+    </ol>
+    <p class="muted">Deletes your account and all associated data, including your profile (email, passport country, home currency), trips, and saved visas. Email requests are processed within 7 days.</p>
+  </div>
+
+  <div class="app-panel hidden" data-app="zonelink">
+    <h3>ZoneLink</h3>
+    <ol>
+      <li>Open ZoneLink and go to <strong>Profile</strong></li>
+      <li>Tap <strong>Delete Account</strong> and confirm</li>
+    </ol>
+    <p class="muted">Deletes your account and all associated data immediately, including saved Favorites and settings. Email requests are processed within 7 days. Want to remove only some data? See <a href="zonelink-delete-data.html">Delete ZoneLink data</a>.</p>
+  </div>
+
+  <div class="app-panel hidden" data-app="tripgear">
+    <h3>TripGear</h3>
+    <ol>
+      <li>Open TripGear and go to <strong>Profile</strong></li>
+      <li>Tap <strong>Delete Account</strong> and confirm</li>
+    </ol>
+    <p class="muted">Deletes your account and all associated data, including packing lists, items, templates, bag profiles, and post-trip feedback. Email requests are processed within 7 days.</p>
+  </div>
+
+  <h2>No app or can't sign in? Email us</h2>
+  <p>We'll delete the account for every app you selected and confirm by email.</p>
+  <label class="field" for="account-email">Email address on the account(s)</label>
+  <input type="email" id="account-email" placeholder="you@example.com" autocomplete="email">
+  <p class="muted">Used only to fill in the email below. Nothing is sent until you press send in your mail app.</p>
+  <a class="btn" id="mail-btn" href="mailto:privacy@headfirstservices.com" aria-disabled="true">Request Account Deletion</a>
+  <p class="muted">Or write to <a href="mailto:privacy@headfirstservices.com">privacy@headfirstservices.com</a> yourself, naming each app and the email address on the account.</p>
+
+  <div class="note">
+    <strong>ChewPaca</strong> has no account and stores nothing on our servers. All of its data is on your phone, and uninstalling the app removes it. See the <a href="https://chewpaca.headfirstservices.com/privacy">ChewPaca privacy policy</a>.
+  </div>
+
+  <p class="muted">Questions? <a href="mailto:privacy@headfirstservices.com">privacy@headfirstservices.com</a> · <a href="privacy.html">Privacy Policy</a> · <a href="https://headfirstservices.com/">headfirstservices.com</a></p>
+
+  <script>
+    (function () {
+      var NAMES = { visastay: 'VisaStay', zonelink: 'ZoneLink', tripgear: 'TripGear' };
+      var ALIASES = { packlite: 'tripgear' };
+      var boxes = Array.prototype.slice.call(document.querySelectorAll('input[name="app"]'));
+      var panels = Array.prototype.slice.call(document.querySelectorAll('.app-panel'));
+      var emailInput = document.getElementById('account-email');
+      var btn = document.getElementById('mail-btn');
+      var title = document.getElementById('page-title');
+      var noneSel = document.getElementById('none-selected');
+
+      // Preselect from ?app=visastay or ?app=zonelink,tripgear
+      var params = new URLSearchParams(window.location.search);
+      var pre = (params.get('app') || '').toLowerCase().split(',').map(function (s) {
+        s = s.trim(); return ALIASES[s] || s;
+      });
+      boxes.forEach(function (b) { if (pre.indexOf(b.value) !== -1) b.checked = true; });
+
+      function selected() {
+        return boxes.filter(function (b) { return b.checked; }).map(function (b) { return b.value; });
+      }
+
+      function update() {
+        var sel = selected();
+        panels.forEach(function (p) { p.classList.toggle('hidden', sel.indexOf(p.getAttribute('data-app')) === -1); });
+        noneSel.classList.toggle('hidden', sel.length > 0);
+        var names = sel.map(function (a) { return NAMES[a]; });
+        title.textContent = names.length === 1 ? 'Delete Your ' + names[0] + ' Account' : 'Delete Your Account';
+        document.title = title.textContent + ' — HeadFirst Services';
+        if (!names.length) {
+          btn.setAttribute('aria-disabled', 'true');
+          btn.href = 'mailto:privacy@headfirstservices.com';
+          return;
+        }
+        var email = emailInput.value.trim();
+        var subject = 'Delete my account: ' + names.join(', ');
+        var body = 'Please delete my account and all associated data in: ' + names.join(', ') + '.\n\n' +
+                   'Email address on the account: ' + (email || '') + '\n';
+        btn.href = 'mailto:privacy@headfirstservices.com?subject=' + encodeURIComponent(subject) +
+                   '&body=' + encodeURIComponent(body);
+        btn.setAttribute('aria-disabled', 'false');
+      }
+
+      boxes.forEach(function (b) { b.addEventListener('change', update); });
+      emailInput.addEventListener('input', update);
+      update();
+    })();
+  </script>
 </body>
 </html>

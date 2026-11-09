@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "sections": [
     {
       "title": "About ZoneLink",
@@ -42,8 +42,8 @@
           "a": "They zoom the ribbon's visible time window — 12 or 24 hours for a single day's detail, or 2d/4d to see multiple days at once for planning further ahead."
         },
         {
-          "q": "Can I add more than a few zones to one Favorite?",
-          "a": "Yes — no zone limit, free or Pro. Add as many as you need."
+          "q": "How many zones can I add?",
+          "a": "Free accounts can add up to 5 zones on the Home workbench. ZoneLink Pro removes that cap — add as many as you need."
         },
         {
           "q": "Does ZoneLink handle Daylight Saving Time automatically?",
@@ -52,19 +52,45 @@
       ]
     },
     {
+      "title": "Best Times to Meet",
+      "items": [
+        {
+          "q": "What is \"Best times to meet\"?",
+          "a": "A ranked list, shown right under the Slider, of the closest upcoming windows where the most people in your Favorite are awake and working — so you don't have to scrub the ribbon yourself to find one. Windows outside everyone's regular work hours are still shown (as long as nobody's asleep) but flagged with a clock icon."
+        },
+        {
+          "q": "Can I share a good time with the people I'm coordinating with?",
+          "a": "Yes — tap Share on the best-times list to generate a branded image card showing the top window in each person's own local time, ready to drop into a text or email. This is free on every account, not a Pro feature."
+        }
+      ]
+    },
+    {
+      "title": "Jet Lag Tracking",
+      "items": [
+        {
+          "q": "What is jet-lag tracking?",
+          "a": "A small indicator on your own (\"Me\") zone showing roughly how many days you have left to adjust after a time-zone change — based on the zone you just left and the zone you're in now. It's free on every account."
+        },
+        {
+          "q": "How does ZoneLink know I landed somewhere new?",
+          "a": "It compares your phone's time zone setting each time you open the app to what it saw last time — no location or GPS data is used, just the zone your device already reports. Turn this off any time in Profile → Travel."
+        },
+        {
+          "q": "Can I set it manually?",
+          "a": "Yes — Profile → \"Set jet lag manually\", or tap the Jet lag badge on your Me row, works whether or not auto-detection is turned on."
+        }
+      ]
+    },
+    {
       "title": "Home-Screen Widgets",
       "items": [
         {
           "q": "Is there a home-screen widget?",
-          "a": "Yes, on Android — the Zones Clock widget shows live local time for every zone on a Favorite you pick, right on your home screen, no need to open the app. Long-press your home screen → Widgets → ZoneLink to add it, then use its gear icon to choose which Favorite it displays."
-        },
-        {
-          "q": "Is the widget available on iPhone?",
-          "a": "Not yet — iOS support (including a widget) is planned; the app has launched Android-first."
+          "a": "Yes, on both Android and iOS — the Zones Clock widget shows live local time for every zone on a Favorite, right on your home screen, no need to open the app. It's included free, no Pro purchase required. On Android: long-press your home screen → Widgets → ZoneLink to add it, then use its gear icon to choose which Favorite it displays. On iOS: touch and hold your home screen → tap + in the corner → search ZoneLink → add it; the iOS widget currently shows your first Favorite (per-widget board picking is coming to iOS)."
         },
         {
           "q": "Why did my widget stop updating?",
-          "a": "Reopen the app and view the Favorite the widget is bound to — that republishes fresh data. If you're past your free trial and grace period without a Pro purchase, widgets pause and show a prompt to reopen the app instead."
+          "a": "Reopen the app and view the Favorite the widget is bound to — that republishes fresh data to the widget."
         }
       ]
     },
@@ -73,19 +99,23 @@
       "items": [
         {
           "q": "Is ZoneLink free?",
-          "a": "Every new account gets a 2-week free trial with full access, no credit card required, starting the moment you add your first zone. After the trial, a short grace period follows before Pro features (including desktop widgets) require a one-time purchase."
+          "a": "Yes, permanently — the Slider, up to 5 zones, DST alerts, the ranked best-times list, the shareable overlap card, and one home-screen widget are all free forever, no trial required and no ads. New accounts also get 14 days of full Pro access (plus a 2-day grace period) to try everything unlimited before deciding."
         },
         {
           "q": "What happens when my trial ends?",
-          "a": "You get a short grace period with a reminder. Once both the trial and grace period end, desktop widgets pause and the app shows a paywall — you can still open the app, but full functionality requires the one-time Pro purchase."
+          "a": "Your account settles onto the permanent Free plan — nothing locks up. Zones on Home cap at 5, and saving a named Favorite to History requires Pro; everything you saved before the trial ended keeps working. Upgrade any time from the paywall's Restore/Upgrade options."
         },
         {
-          "q": "Is ZoneLink a subscription?",
-          "a": "No — ZoneLink Pro is a single one-time (lifetime) purchase, not a recurring subscription."
+          "q": "What does ZoneLink Pro add?",
+          "a": "Unlimited zones on Home and unlimited saved Favorites in History, unlocked with a single one-time purchase."
+        },
+        {
+          "q": "Is ZoneLink Pro a subscription?",
+          "a": "No — ZoneLink Pro is a single one-time (lifetime) purchase, with no recurring charge."
         },
         {
           "q": "How do I restore my purchase after reinstalling or switching devices?",
-          "a": "Go to Profile → Restore Purchases. This reconnects your existing Pro purchase to your account."
+          "a": "Go to Profile → Restore Purchases, or use the Restore link on the upgrade screen. This reconnects your existing Pro purchase to your account."
         }
       ]
     },
@@ -94,7 +124,7 @@
       "items": [
         {
           "q": "What data does ZoneLink store?",
-          "a": "Your email address and the Favorites/zones you create (names, time zones, colors). No location data is collected."
+          "a": "Your email address, the Favorites/zones you create (names, time zones, colors), and — if you use jet-lag tracking — the two time zones and date involved. No location data is collected; jet-lag tracking reads your device's time zone setting only, never GPS."
         },
         {
           "q": "Where is my data stored?",
