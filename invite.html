@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get VisaStay</title>
+  <meta name="robots" content="noindex">
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; margin: 0; background: #f5f7fb; color: #1d2433;
+           display: flex; min-height: 100vh; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box; }
+    .card { background: #fff; border-radius: 16px; padding: 32px 24px; max-width: 420px; width: 100%; text-align: center;
+            box-shadow: 0 4px 24px rgba(0,0,0,.08); }
+    h1 { font-size: 24px; margin: 0 0 8px; }
+    p { color: #555; font-size: 15px; line-height: 1.5; }
+    .code { display: inline-block; font-size: 22px; font-weight: 700; letter-spacing: 3px; background: #eef3ff;
+            color: #1a73e8; padding: 8px 18px; border-radius: 8px; margin: 8px 0 4px; }
+    a.btn { display: block; margin-top: 14px; background: #1a73e8; color: #fff; text-decoration: none; padding: 13px;
+            border-radius: 8px; font-weight: 600; }
+    a.alt { background: #1d2433; }
+    small { color: #888; display: block; margin-top: 18px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Get VisaStay</h1>
+    <p>Track how many days you can legally stay in each country, Schengen 90/180 included.</p>
+    <a class="btn" id="play" href="#">Get it on Google Play</a>
+    <a class="btn alt" id="ios" href="#">Download on the App Store</a>
+    <small>VisaStay by HeadFirst Services</small>
+  </div>
+  <script>
+    var PKG = 'com.digitalnomadessentials.digital_nomad_essentials';
+    var IOS_URL = 'https://apps.apple.com/app/id6776447080';
+    var ref = (new URLSearchParams(location.search).get('ref') || '').replace(/[^A-Za-z0-9]/g, '').slice(0, 16).toLowerCase();
+    var play = 'https://play.google.com/store/apps/details?id=' + PKG +
+      (ref ? '&referrer=' + encodeURIComponent('ref=' + ref + '&utm_source=app_share') : '');
+    document.getElementById('play').href = play;
+    document.getElementById('ios').href = IOS_URL;
+    var ua = navigator.userAgent || '';
+    if (/Android/i.test(ua)) {
+      // App already installed? Hand the code to it; otherwise go to Play.
+      if (ref) location.href = 'com.digitalnomadessentials.visastay://invite?ref=' + ref;
+      setTimeout(function () { location.href = play; }, 1200);
+    }
+  </script>
+</body>
+</html>
