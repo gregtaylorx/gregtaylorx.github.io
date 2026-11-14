@@ -48,6 +48,13 @@
     .hidden { display: none; }
   </style>
   <noscript><style>.app-panel.hidden { display: block; } #none-selected { display: none; }</style></noscript>
+  <script>
+    (function () {
+      var map = { visastay: 'visastay', zonelink: 'zonelink', tripgear: 'tripgear', packlite: 'tripgear', costsync: 'costsync', chewpaca: 'chewpaca' };
+      var a = (new URLSearchParams(location.search).get('app') || '').toLowerCase().split(',')[0].trim();
+      if (map[a]) location.replace('https://headfirstservices.com/' + map[a] + '/delete-account/');
+    })();
+  </script>
 </head>
 <body>
   <h1 id="page-title">Delete Your Account</h1>
