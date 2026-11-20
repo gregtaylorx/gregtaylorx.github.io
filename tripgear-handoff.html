@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="robots" content="noindex" />
+  <title>TripGear</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5;
+           min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+    .card { background: #fff; border-radius: 16px; padding: 40px 32px; max-width: 420px; width: 100%;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.08); text-align: center; }
+    h1 { font-size: 22px; font-weight: 700; color: #1a1a2e; margin-bottom: 8px; }
+    p { font-size: 15px; color: #666; line-height: 1.5; margin-bottom: 24px; }
+    .btn { display: inline-block; background: #0d7d8f; color: #fff; border-radius: 10px; padding: 14px 28px;
+           font-size: 16px; font-weight: 600; text-decoration: none; width: 100%; }
+    .note { font-size: 13px; color: #999; margin: 16px 0 0; }
+  </style>
+</head>
+<body data-app="tripgear">
+  <div class="card">
+    <h1 id="title">TripGear</h1>
+    <p id="msg">Loading…</p>
+    <a id="open" class="btn" href="#" style="display:none"></a>
+    <p class="note" id="note"></p>
+  </div>
+  <script src="/js/handoff.js"></script>
+</body>
+</html>

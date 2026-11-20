@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
-<head><title>VisaStay — Redirecting…</title></head>
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; base-uri 'none'; form-action 'none'" />
+<meta name="referrer" content="no-referrer" />
+<title>VisaStay — Redirecting…</title>
+</head>
 <body>
-<script>
-  var url = "com.digitalnomadessentials.digital_nomad_essentials://login-callback" + window.location.search + window.location.hash;
-  window.location.replace(url);
-</script>
+<script src="/js/auth-legacy.js"></script>
 <p>Opening VisaStay…</p>
 </body>
 </html>
