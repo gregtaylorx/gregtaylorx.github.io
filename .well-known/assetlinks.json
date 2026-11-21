@@ -1,0 +1,14 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls",
+                 "delegate_permission/common.get_login_creds"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.digitalnomadessentials.zonelink",
+      "sha256_cert_fingerprints": [
+        "A1:F2:62:AF:98:A2:F5:74:D5:03:B3:9F:17:AF:47:A9:00:BF:A7:09:49:23:67:5D:F1:A9:43:8B:B9:13:1D:CF",
+        "FB:B1:28:3D:82:ED:23:B1:15:36:5F:A3:87:71:B2:19:83:CB:1F:E2:A6:6D:15:1B:30:8C:FD:48:71:29:A4:99"
+      ]
+    }
+  }
+]
