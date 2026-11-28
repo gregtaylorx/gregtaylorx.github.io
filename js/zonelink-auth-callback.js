@@ -63,27 +63,38 @@
         null, null, null);
     }
 
+    // Security review 2026-11-17 (item 2): this page NEVER forwards
+    // access/refresh tokens to the app any more. Password reset forwards the
+    // one-time token_hash + the account email; the app shows
+    // "Continue as <email>?" and only then verifies it. PKCE `code` links are
+    // forwarded as-is (they only work on the phone that requested them).
+    // Signup confirmation is still verified right here and needs no app hand-off.
     async function init() {
       var query = new URLSearchParams(window.location.search);
       var hash  = new URLSearchParams(window.location.hash.replace(/^#/, ''));
 
-      var tokenHash   = query.get('token_hash');
-      var type        = query.get('type') || hash.get('type') || '';
-      var code        = query.get('code');
+      var tokenHash = query.get('token_hash');
+      var type      = query.get('type') || hash.get('type') || '';
+      var code      = query.get('code');
+      var email     = query.get('email') || '';
 
-      // ── Recovery (password reset) keeps the existing code/token deep-link
-      //    path — the app needs the session to set a new password in-app. ──
-      if (type === 'recovery' && code) {
-        showRecovery('code=' + encodeURIComponent(code) + '&type=recovery');
+      // ── Password reset ──────────────────────────────────────────────────
+      if (type === 'recovery') {
+        if (tokenHash && email) {
+          showRecovery('token_hash=' + encodeURIComponent(tokenHash) +
+                       '&type=recovery&email=' + encodeURIComponent(email));
+        } else if (code) {
+          showRecovery('code=' + encodeURIComponent(code) + '&type=recovery');
+        } else {
+          // Implicit-token or email-less links are no longer accepted.
+          showRecoveryExpired();
+        }
         return;
       }
 
-      // ── token_hash flow — verified client-side with a POST (verifyOtp), so
-      //    GET-only email scanners can't consume the link. Handles BOTH signup
-      //    confirmation AND password recovery (Reset Password template uses
-      //    token_hash + type=recovery). ──
+      // ── Signup confirmation: verify here (POST, so GET-only email scanners
+      //    can't consume it). Nothing is handed to the app. ──
       if (tokenHash) {
-        var isRecovery = (type === 'recovery');
         try {
           var client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, {
             auth: { detectSessionInUrl: false, persistSession: false }
@@ -92,32 +103,18 @@
             token_hash: tokenHash,
             type: type || 'email'
           });
-          if (result.error) {
-            if (isRecovery) showRecoveryExpired();
-            else showAlreadyDone();
-          } else if (isRecovery) {
-            var s = (result.data && result.data.session) || {};
-            showRecovery(
-              'access_token=' + encodeURIComponent(s.access_token || '') +
-              '&refresh_token=' + encodeURIComponent(s.refresh_token || '') +
-              '&type=recovery');
-          } else {
-            showConfirmed();
-          }
+          if (result.error) showAlreadyDone();
+          else showConfirmed();
         } catch (e) {
-          if (isRecovery) showRecoveryExpired();
-          else showAlreadyDone();
+          showAlreadyDone();
         }
         return;
       }
 
-      // ── Legacy/fallback: confirmation via code or implicit token. ──
-      if (code) {
-        var link = buildDeepLink('login-callback',
-          'code=' + encodeURIComponent(code) + '&type=' + encodeURIComponent(type || 'signup'));
-        render('✅', 'Email Confirmed!',
-          'Your email is confirmed. Tap below to open ZoneLink.',
-          link, 'Open ZoneLink', 'ZoneLink must be installed on this device.');
+      // ── Legacy confirmation links: the account is already confirmed by the
+      //    time Supabase redirects here; just tell the user to sign in. ──
+      if (code || hash.get('access_token')) {
+        showConfirmed();
         return;
       }
 
